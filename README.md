@@ -12,6 +12,35 @@ If you do not know what an entity system is, you should read the following blog 
 
 You can also check the [Entity Systems Wiki](http://entity-systems.wikidot.com/).
 
+## Requirements
+
+`libes` is written in C++11 so you need a C++11 compiler like [Clang](http://clang.llvm.org/) or [GCC](http://gcc.gnu.org/). There is no other dependency.
+
+## Build and install
+
+You can download the sources directly from github:
+
+    git clone https://github.com/jube/libes.git
+
+Then you have to use [CMake](http://www.cmake.org/) to build the project:
+
+    cd libes
+    mkdir build
+    cd build
+    cmake ../src
+    make
+
+Finally, you can install the files (you may need root permissions):
+
+    make install
+
+## Use
+
+`libes` provides a [pkg-config](http://www.freedesktop.org/wiki/Software/pkg-config/) file so you can use it to configure your project.
+
+    pkg-config --cflags --libs libes0
+
+
 ## Authors
 
 - Julien Bernard, julien dot bernard at univ dash fcomte dot fr
