@@ -21,3 +21,8 @@ install(
   FILES "${LIBES_BINARY_DIR}/libes0.pc"
   DESTINATION "${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX}/pkgconfig"
 )
+
+install(
+  DIRECTORY "${LIBES_SOURCE_DIR}/include/es"
+  DESTINATION include
+)
