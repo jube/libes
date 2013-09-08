@@ -16,7 +16,7 @@ if(DOXYGEN_FOUND)
   add_custom_target(doc ${DOXYGEN_EXECUTABLE} "${LIBES_BINARY_DIR}/Doxyfile")
 endif(DOXYGEN_FOUND)
 
-configure_file("${LIBES_SOURCE_DIR}/libes0.pc.in" "${LIBES_BINARY_DIR}/libes.pc" @ONLY)
+configure_file("${LIBES_SOURCE_DIR}/libes0.pc.in" "${LIBES_BINARY_DIR}/libes0.pc" @ONLY)
 install(
   FILES "${LIBES_BINARY_DIR}/libes0.pc"
   DESTINATION "${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX}/pkgconfig"
