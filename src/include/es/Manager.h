@@ -154,6 +154,9 @@ namespace es {
     /**
      * @brief Add a system to the manager.
      *
+     * The system must have been allocated with new and will be handled by
+     * the manager (it will be freed in the manager destructor).
+     *
      * @param sys the system
      * @returns true if the system was actually added
      */
