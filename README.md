@@ -6,9 +6,9 @@
 
 If you do not know what an entity system is, you should read the following blog entries:
 
-- [Evolve your hierarchy](http://cowboyprogramming.com/2007/01/05/evolve-your-heirachy/), Mick West, Jan 2007
-- [Entity Systems are the future of MMOG development](http://t-machine.org/index.php/2007/09/03/entity-systems-are-the-future-of-mmog-development-part-1/), Adam Martin, Sep 2007
-- [What is an entity system framework for game development?](http://www.richardlord.net/blog/what-is-an-entity-framework), Richard Lord, Jan 2012
+* [Evolve your hierarchy](http://cowboyprogramming.com/2007/01/05/evolve-your-heirachy/), Mick West, Jan 2007
+* [Entity Systems are the future of MMOG development](http://t-machine.org/index.php/2007/09/03/entity-systems-are-the-future-of-mmog-development-part-1/), Adam Martin, Sep 2007
+* [What is an entity system framework for game development?](http://www.richardlord.net/blog/what-is-an-entity-framework), Richard Lord, Jan 2012
 
 You can also check the [Entity Systems Wiki](http://entity-systems.wikidot.com/).
 
