@@ -148,7 +148,7 @@ namespace es {
     /**
      * @brief Extract the component associated to an entity.
      *
-     * The component is remove from the associated store and returned.
+     * The component is removed from the associated store and returned.
      *
      * @param e the entity
      * @param ct the component type
@@ -160,7 +160,7 @@ namespace es {
     /**
      * @brief Extract the component associated to an entity.
      *
-     * The component is remove from the associated store and returned.
+     * The component is removed from the associated store and returned.
      *
      * @param e the entity
      * @returns the component or null if the entity is not valid, or if the
