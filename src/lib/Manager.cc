@@ -57,11 +57,7 @@ namespace es {
   }
 
   Component *Manager::getComponent(Entity e, ComponentType ct) {
-    if (e == INVALID_ENTITY) {
-      return nullptr;
-    }
-
-    if (ct == INVALID_COMPONENT) {
+    if (e == INVALID_ENTITY || ct == INVALID_COMPONENT) {
       return nullptr;
     }
 
@@ -75,11 +71,7 @@ namespace es {
   }
 
   bool Manager::addComponent(Entity e, ComponentType ct, Component *c) {
-    if (e == INVALID_ENTITY) {
-      return false;
-    }
-
-    if (ct == INVALID_COMPONENT) {
+    if (e == INVALID_ENTITY || ct == INVALID_COMPONENT) {
       return false;
     }
 
@@ -90,6 +82,22 @@ namespace es {
     }
 
     return store->add(e, c);
+  }
+
+  Component *Manager::extractComponent(Entity e, ComponentType ct) {
+    if (e == INVALID_ENTITY || ct == INVALID_COMPONENT) {
+      return nullptr;
+    }
+
+    Store *store = getStore(ct);
+
+    if (store == nullptr) {
+      return nullptr;
+    }
+
+    Component *c = store->get(e);
+    store->remove(e);
+    return c;
   }
 
   int Manager::subscribeEntityToSystems(Entity e, std::set<ComponentType> components) {

@@ -62,6 +62,15 @@ namespace es {
      */
     bool destroyEntity(Entity e);
 
+    /**
+     * @brief Get all the entities
+     *
+     * @returns a copy of the set of entities
+     */
+    std::set<Entity> getEntities() const {
+      return m_entities;
+    }
+
     /// @}
 
 
@@ -135,6 +144,35 @@ namespace es {
       static_assert(C::type != INVALID_COMPONENT, "C must define its type");
       return addComponent(e, C::type, c);
     }
+
+    /**
+     * @brief Extract the component associated to an entity.
+     *
+     * The component is remove from the associated store and returned.
+     *
+     * @param e the entity
+     * @param ct the component type
+     * @returns the component or null if the entity is not valid, or if the
+     *   store does not exist or if the entity has no component of this type
+     */
+    Component *extractComponent(Entity e, ComponentType ct);
+
+    /**
+     * @brief Extract the component associated to an entity.
+     *
+     * The component is remove from the associated store and returned.
+     *
+     * @param e the entity
+     * @returns the component or null if the entity is not valid, or if the
+     *   store does not exist or if the entity has no component of this type
+     */
+    template<typename C>
+    C *extractComponent(Entity e) {
+      static_assert(std::is_base_of<Component, C>::value, "C must be a Component");
+      static_assert(C::type != INVALID_COMPONENT, "C must define its type");
+      return static_cast<C*>(extractComponent(e, C::type));
+    }
+
 
     /// @}
 
