@@ -104,6 +104,8 @@ namespace es {
       if (std::includes(components.begin(), components.end(), needed.begin(), needed.end())) {
         sys->addEntity(e);
         n++;
+      } else {
+        sys->removeEntity(e);
       }
     }
 

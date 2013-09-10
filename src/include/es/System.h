@@ -88,6 +88,14 @@ namespace es {
     bool addEntity(Entity e);
 
     /**
+     * @brief Removes an entity from the system.
+     *
+     * @param e the entity
+     * @returns true if the entity was actually removed
+     */
+    bool removeEntity(Entity e);
+
+    /**
      * @brief Initialize the system
      *
      * By default, does nothing

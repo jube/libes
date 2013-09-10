@@ -25,6 +25,11 @@ namespace es {
     return ret.second;
   }
 
+  bool System::removeEntity(Entity e) {
+    auto ret = m_entities.erase(e);
+    return ret > 0;
+  }
+
   void System::init() {
     // nothing by default
   }
