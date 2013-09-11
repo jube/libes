@@ -34,7 +34,7 @@ int main() {
   manager.createStoreFor(Coords::type);
   manager.createStoreFor(Look::type);
 
-  sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "libes demo");
+  sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "libes demo", sf::Style::Titlebar | sf::Style::Close);
 
   // prepare the systems
 
