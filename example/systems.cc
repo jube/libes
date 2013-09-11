@@ -76,7 +76,7 @@ void Physics::updateEntity(float delta, es::Entity e) {
   assert(speed);
 
   // apply gravity
-  speed->vec.y += GRAVITY * delta;
+  speed->vec.y += -GRAVITY * delta;
 
   pos->vec.x += speed->vec.x * delta;
   pos->vec.y += speed->vec.y * delta;

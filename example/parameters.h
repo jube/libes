@@ -21,7 +21,7 @@
 
 #define RADIUS 20
 
-#define GRAVITY (-200)
+#define GRAVITY 200
 #define LOSS 0.98f
 
 #endif // PARAMETERS_H
