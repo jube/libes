@@ -39,7 +39,11 @@ namespace es {
   }
 
   void System::update(float delta) {
-    for (Entity e : m_entities) {
+    /* make a copy so that the entities can be safely removed from the system
+     * without invalidating the iterators.
+     */
+    auto copy = m_entities;
+    for (Entity e : copy) {
       updateEntity(delta, e);
     }
   }
