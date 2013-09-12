@@ -40,6 +40,8 @@ Finally, you can install the files (you may need root permissions):
 
     pkg-config --cflags --libs libes0
 
+Then you can check the [libes tutorial](https://github.com/jube/libes/blob/master/doc/tutorial.md) to learn how to use the library.
+
 
 ## Authors
 
