@@ -378,7 +378,8 @@ need a window for the input system and the render system, we also create it.
 Then, we initialize all the systems.
 
 ```cpp
-sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "libes demo", sf::Style::Titlebar | sf::Style::Close);
+sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "libes demo",
+    sf::Style::Titlebar | sf::Style::Close);
 
 // prepare the systems
 
