@@ -1,6 +1,6 @@
-# `libes`, an Entity System library for C++
+# `libes`, an Entity System library
 
-`libes` is a library for managing an entity system.
+`libes` is a library for managing an [entity system](http://en.wikipedia.org/wiki/Entity_component_system) written in C++.
 
 ## Entity systems
 
