@@ -1,4 +1,4 @@
-# libes - an Entity System library for C++
+# `libes`, an Entity System library for C++
 
 `libes` is a library for managing an entity system.
 
@@ -47,6 +47,10 @@ Then you can check the [libes tutorial](https://github.com/jube/libes/blob/maste
 ## Authors
 
 - Julien Bernard, julien dot bernard at univ dash fcomte dot fr
+
+## ChangeLog
+
+See [ChangeLog.md](https://github.com/jube/libes/blob/master/ChangeLog.md).
 
 ## Copyright
 
