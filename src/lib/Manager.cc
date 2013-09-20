@@ -23,10 +23,6 @@
 namespace es {
 
   Manager::~Manager() {
-    for (auto sys : m_systems) {
-      delete sys;
-    }
-
     for (auto store : m_stores) {
       // TODO: delete the content of the store?
       delete store.second;
@@ -107,7 +103,7 @@ namespace es {
 
     int n = 0;
 
-    for (auto sys : m_systems) {
+    for (auto& sys : m_systems) {
       const std::set<ComponentType> needed = sys->getNeededComponents();
       if (std::includes(components.begin(), components.end(), needed.begin(), needed.end())) {
         sys->addEntity(e);
@@ -121,31 +117,31 @@ namespace es {
   }
 
 
-  bool Manager::addSystem(System *sys) {
-    m_systems.push_back(sys);
+  bool Manager::addSystem(std::unique_ptr<System> sys) {
+    m_systems.push_back(std::move(sys));
     return true;
   }
 
   void Manager::initSystems() {
-    std::sort(m_systems.begin(), m_systems.end(), [](const System *lhs, const System *rhs) {
+    std::sort(m_systems.begin(), m_systems.end(), [](const std::unique_ptr<System>& lhs, const std::unique_ptr<System>& rhs) {
       return lhs->getPriority() < rhs->getPriority();
     });
 
-    for (auto sys : m_systems) {
+    for (auto& sys : m_systems) {
       sys->init();
     }
   }
 
   void Manager::updateSystems(float delta) {
-    for (auto sys : m_systems) {
+    for (auto& sys : m_systems) {
       sys->preUpdate();
     }
 
-    for (auto sys : m_systems) {
+    for (auto& sys : m_systems) {
       sys->update(delta);
     }
 
-    for (auto sys : m_systems) {
+    for (auto& sys : m_systems) {
       sys->postUpdate();
     }
   }

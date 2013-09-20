@@ -38,10 +38,10 @@ int main() {
 
   // prepare the systems
 
-  manager.addSystem(new Input(&manager, &window));
-  manager.addSystem(new Physics(&manager));
-  manager.addSystem(new Graphics(&manager));
-  manager.addSystem(new Render(&manager, &window));
+  manager.addSystem(std::unique_ptr<es::System>(new Input(&manager, &window)));
+  manager.addSystem(std::unique_ptr<es::System>(new Physics(&manager)));
+  manager.addSystem(std::unique_ptr<es::System>(new Graphics(&manager)));
+  manager.addSystem(std::unique_ptr<es::System>(new Render(&manager, &window)));
 
   manager.initSystems();
 

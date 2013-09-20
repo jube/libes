@@ -17,6 +17,7 @@
 #define ES_MANAGER_H
 
 #include <map>
+#include <memory>
 #include <set>
 #include <string>
 #include <type_traits>
@@ -24,9 +25,9 @@
 
 #include "Entity.h"
 #include "Store.h"
+#include "System.h"
 
 namespace es {
-  class System;
 
   /**
    * @brief The manager.
@@ -192,13 +193,10 @@ namespace es {
     /**
      * @brief Add a system to the manager.
      *
-     * The system must have been allocated with new and will be handled by
-     * the manager (it will be freed in the manager destructor).
-     *
      * @param sys the system
      * @returns true if the system was actually added
      */
-    bool addSystem(System *sys);
+    bool addSystem(std::unique_ptr<System> sys);
 
     /**
      * @brief Initialize all systems.
@@ -218,7 +216,7 @@ namespace es {
     Entity m_next;
 
     std::set<Entity> m_entities;
-    std::vector<System*> m_systems;
+    std::vector<std::unique_ptr<System>> m_systems;
     std::map<ComponentType, Store *> m_stores;
   };
 
