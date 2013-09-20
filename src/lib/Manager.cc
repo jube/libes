@@ -118,7 +118,10 @@ namespace es {
 
 
   bool Manager::addSystem(std::unique_ptr<System> sys) {
-    m_systems.push_back(std::move(sys));
+    if (sys) {
+      m_systems.push_back(std::move(sys));
+    }
+
     return true;
   }
 
