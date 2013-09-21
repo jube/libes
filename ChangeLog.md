@@ -4,7 +4,7 @@
 
 ### 0.2.0 (DD MMM YYYY)
 
-* ...
+* the Manager nows clearly gets the ownership of the systems
 
 ## `libes` 0.1
 
