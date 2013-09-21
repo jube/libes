@@ -198,6 +198,19 @@ namespace es {
      */
     bool addSystem(std::unique_ptr<System> sys);
 
+
+    /**
+     * @brief Add a system to the manager.
+     *
+     * @param args the arguments to pass to the system's constructor
+     * @returns true if the system was actually added
+     */
+    template<typename S, typename ... Args>
+    bool addSystem(Args... args) {
+      static_assert(std::is_base_of<System, S>::value, "S must be a System");
+      return addSystem(std::unique_ptr<System>(new S(args...)));
+    }
+
     /**
      * @brief Initialize all systems.
      */

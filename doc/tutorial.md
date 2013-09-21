@@ -383,10 +383,10 @@ sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "libes demo",
 
 // prepare the systems
 
-manager.addSystem(new Input(&manager, &window));
-manager.addSystem(new Physics(&manager));
-manager.addSystem(new Graphics(&manager));
-manager.addSystem(new Render(&manager, &window));
+manager.addSystem<Input>(&manager, &window);
+manager.addSystem<Physics>(&manager);
+manager.addSystem<Graphics>(&manager);
+manager.addSystem<Render>(&manager, &window);
 
 manager.initSystems();
 ```
