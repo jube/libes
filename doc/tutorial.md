@@ -411,7 +411,7 @@ That's all.
 ## Conclusion
 
 The full source code of this tutorial is available in the
-[example directory on github](https://github.com/jube/libes/tree/master/example).
+[`examples/simple_balls` directory on github](https://github.com/jube/libes/tree/master/examples/simple_balls).
 You can compile it and run it.
 
 ![An example of libes](img/balls.png)
