@@ -93,6 +93,18 @@ namespace es {
      */
     bool createStoreFor(ComponentType ct);
 
+    /**
+     * @brief Create a store for a component type.
+     *
+     * @returns true if the store was createds
+     */
+    template<typename C>
+    bool createStoreFor() {
+      static_assert(std::is_base_of<Component, C>::value, "C must be a Component");
+      static_assert(C::type != INVALID_COMPONENT, "C must define its type");
+      return createStoreFor(C::type);
+    }
+
     /// @}
 
 
