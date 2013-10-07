@@ -4,7 +4,8 @@
 
 ### 0.2.0 (DD MMM YYYY)
 
-* the Manager nows clearly gets the ownership of the systems
+* The Manager nows clearly gets the ownership of the systems
+* There is now a template function for createStoreFor in the Manager
 
 ## `libes` 0.1
 
