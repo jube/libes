@@ -117,16 +117,16 @@ namespace es {
   }
 
 
-  bool Manager::addSystem(std::unique_ptr<System> sys) {
+  bool Manager::addSystem(std::shared_ptr<System> sys) {
     if (sys) {
-      m_systems.push_back(std::move(sys));
+      m_systems.push_back(sys);
     }
 
     return true;
   }
 
   void Manager::initSystems() {
-    std::sort(m_systems.begin(), m_systems.end(), [](const std::unique_ptr<System>& lhs, const std::unique_ptr<System>& rhs) {
+    std::sort(m_systems.begin(), m_systems.end(), [](const std::shared_ptr<System>& lhs, const std::shared_ptr<System>& rhs) {
       return lhs->getPriority() < rhs->getPriority();
     });
 

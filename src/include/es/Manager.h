@@ -208,7 +208,7 @@ namespace es {
      * @param sys the system
      * @returns true if the system was actually added
      */
-    bool addSystem(std::unique_ptr<System> sys);
+    bool addSystem(std::shared_ptr<System> sys);
 
 
     /**
@@ -218,9 +218,9 @@ namespace es {
      * @returns true if the system was actually added
      */
     template<typename S, typename ... Args>
-    bool addSystem(Args... args) {
+    bool addSystem(Args&&... args) {
       static_assert(std::is_base_of<System, S>::value, "S must be a System");
-      return addSystem(std::unique_ptr<System>(new S(args...)));
+      return addSystem(std::make_shared<S>(std::forward<Args>(args)...));
     }
 
     /**
@@ -241,7 +241,7 @@ namespace es {
     Entity m_next;
 
     std::set<Entity> m_entities;
-    std::vector<std::unique_ptr<System>> m_systems;
+    std::vector<std::shared_ptr<System>> m_systems;
     std::map<ComponentType, Store *> m_stores;
   };
 
