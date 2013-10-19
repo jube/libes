@@ -13,4 +13,5 @@ add_library(es0 SHARED
 install(
   TARGETS es0
   LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
 )

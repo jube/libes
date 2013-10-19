@@ -4,7 +4,14 @@ project(LIBES CXX)
 
 include(CPackConfig.cmake)
 
-add_definitions(-Wall -g -O2 -std=c++11)
+add_definitions(-Wall -g -O2)
+
+if (WIN32)
+  add_definitions(-std=c++0x)
+else (WIN32)
+  add_definitions(-std=c++11)
+endif (WIN32)
+
 include_directories("${LIBES_SOURCE_DIR}/include")
 
 add_subdirectory(lib)
