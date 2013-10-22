@@ -19,6 +19,7 @@
 #include <algorithm>
 
 #include <es/System.h>
+#include <es/SystemVisitor.h>
 
 namespace es {
 
@@ -135,13 +136,34 @@ namespace es {
     }
   }
 
+  namespace {
+
+    class UpdateVisitor : public SystemVisitor {
+    public:
+      UpdateVisitor(float _delta)
+      : delta(_delta)
+      {
+      }
+
+      virtual void visitGlobalSystem(GlobalSystem& sys) override {
+        sys.update(delta);
+      }
+
+    private:
+      const float delta;
+    };
+
+
+  }
+
   void Manager::updateSystems(float delta) {
     for (auto& sys : m_systems) {
       sys->preUpdate();
     }
 
+    UpdateVisitor vis(delta);
     for (auto& sys : m_systems) {
-      sys->update(delta);
+      sys->accept(vis);
     }
 
     for (auto& sys : m_systems) {

@@ -20,16 +20,6 @@ namespace es {
   System::~System() {
   }
 
-  bool System::addEntity(Entity e) {
-    auto ret = m_entities.insert(e);
-    return ret.second;
-  }
-
-  bool System::removeEntity(Entity e) {
-    auto ret = m_entities.erase(e);
-    return ret > 0;
-  }
-
   void System::init() {
     // nothing by default
   }
@@ -38,21 +28,7 @@ namespace es {
     // nothing by default
   }
 
-  void System::update(float delta) {
-    /* make a copy so that the entities can be safely removed from the system
-     * without invalidating the iterators.
-     */
-    auto copy = m_entities;
-    for (Entity e : copy) {
-      updateEntity(delta, e);
-    }
-  }
-
   void System::postUpdate() {
-    // nothing by default
-  }
-
-  void System::updateEntity(float delta, Entity entity) {
     // nothing by default
   }
 

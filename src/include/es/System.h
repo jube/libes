@@ -23,6 +23,7 @@
 
 namespace es {
   class Manager;
+  class SystemVisitor;
 
   /**
    * @brief A system.
@@ -48,6 +49,8 @@ namespace es {
     }
 
     virtual ~System();
+
+    virtual void accept(SystemVisitor& vis) = 0;
 
     /**
      * @brief Get the priority of the system.
@@ -85,7 +88,7 @@ namespace es {
      * @param e the entity
      * @returns true if the entity was actually added
      */
-    bool addEntity(Entity e);
+    virtual bool addEntity(Entity e) = 0;
 
     /**
      * @brief Removes an entity from the system.
@@ -93,7 +96,7 @@ namespace es {
      * @param e the entity
      * @returns true if the entity was actually removed
      */
-    bool removeEntity(Entity e);
+    virtual bool removeEntity(Entity e) = 0;
 
     /**
      * @brief Initialize the system
@@ -110,16 +113,6 @@ namespace es {
     virtual void preUpdate();
 
     /**
-     * @brief Update all the entities in the current time step.
-     *
-     * By default, it calls updateEntity on every entity that was already
-     * added.
-     *
-     * @param delta the time (in second) since the last update
-     */
-    virtual void update(float delta);
-
-    /**
      * @brief Do something after the individual update of each entity.
      *
      * This function is called at every step. By default, do nothing.
@@ -127,25 +120,6 @@ namespace es {
      */
     virtual void postUpdate();
 
-    /**
-     * @brief Update an entity in the current time step.
-     *
-     * This function is called by update. By default, do nothing.
-     *
-     * @param delta the time (in second) since the last update
-     * @param e the entity
-     */
-    virtual void updateEntity(float delta, Entity e);
-
-  protected:
-    /**
-     * @brief Get the set of entities handled by this system.
-     *
-     * @returns the set of entities.
-     */
-    const std::set<Entity>& getEntities() {
-      return m_entities;
-    }
 
   private:
     const int m_priority;
@@ -153,7 +127,6 @@ namespace es {
 
     Manager * const m_manager;
 
-    std::set<Entity> m_entities;
   };
 
 }
