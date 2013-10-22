@@ -16,17 +16,17 @@
 #ifndef SYSTEMS_H
 #define SYSTEMS_H
 
-#include <es/System.h>
+#include <es/GlobalSystem.h>
 #include <es/Manager.h>
 
 #include <SFML/Graphics.hpp>
 
 #include "components.h"
 
-class Input : public es::System {
+class Input : public es::GlobalSystem {
 public:
   Input(es::Manager *manager, sf::RenderWindow *window)
-    : System(1, {  }, manager)
+    : GlobalSystem(1, {  }, manager)
     , m_window(window)
   { }
 
@@ -36,30 +36,30 @@ private:
   sf::RenderWindow *m_window;
 };
 
-class Physics : public es::System {
+class Physics : public es::GlobalSystem {
 public:
   Physics(es::Manager *manager)
-    : System(2, { Position::type, Speed::type }, manager)
+    : GlobalSystem(2, { Position::type, Speed::type }, manager)
   { }
 
   virtual void updateEntity(float delta, es::Entity e) override;
 
 };
 
-class Graphics : public es::System {
+class Graphics : public es::GlobalSystem {
 public:
   Graphics(es::Manager *manager)
-    : System(3, { Position::type, Coords::type }, manager)
+    : GlobalSystem(3, { Position::type, Coords::type }, manager)
   { }
 
   virtual void updateEntity(float delta, es::Entity e) override;
 
 };
 
-class Render : public es::System {
+class Render : public es::GlobalSystem {
 public:
   Render(es::Manager *manager, sf::RenderWindow *window)
-    : System(4, { Coords::type, Look::type }, manager)
+    : GlobalSystem(4, { Coords::type, Look::type }, manager)
     , m_window(window)
   { }
 
