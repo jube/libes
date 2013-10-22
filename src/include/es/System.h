@@ -110,7 +110,7 @@ namespace es {
      *
      * This function is called at every step. By default, do nothing.
      */
-    virtual void preUpdate();
+    virtual void preUpdate(float delta);
 
     /**
      * @brief Do something after the individual update of each entity.
@@ -118,7 +118,7 @@ namespace es {
      * This function is called at every step. By default, do nothing.
      *
      */
-    virtual void postUpdate();
+    virtual void postUpdate(float delta);
 
 
   private:

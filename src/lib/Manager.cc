@@ -158,7 +158,7 @@ namespace es {
 
   void Manager::updateSystems(float delta) {
     for (auto& sys : m_systems) {
-      sys->preUpdate();
+      sys->preUpdate(delta);
     }
 
     UpdateVisitor vis(delta);
@@ -167,7 +167,7 @@ namespace es {
     }
 
     for (auto& sys : m_systems) {
-      sys->postUpdate();
+      sys->postUpdate(delta);
     }
   }
 

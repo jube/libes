@@ -24,11 +24,11 @@ namespace es {
     // nothing by default
   }
 
-  void System::preUpdate() {
+  void System::preUpdate(float delta) {
     // nothing by default
   }
 
-  void System::postUpdate() {
+  void System::postUpdate(float delta) {
     // nothing by default
   }
 
