@@ -35,7 +35,7 @@ namespace es {
     /**
      * @brief A system constructor.
      *
-     * @param priority the priority of the component (small priority will
+     * @param priority the priority of the system (small priority will
      * be executed first)
      * @param needed the set of needed component types that an entity must
      * have to be handled properly by this system
