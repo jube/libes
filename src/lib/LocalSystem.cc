@@ -24,30 +24,26 @@ namespace es {
     vis.visitLocalSystem(*this);
   }
 
-  void LocalSystem::update(float delta, int x, int y) {
-    auto copy = getEntities(x, y);
+  void LocalSystem::update(float delta) {
+    auto copy = getEntities();
     for (Entity e : copy) {
       updateEntity(delta, e);
     }
   }
 
-  void LocalSystem::updateEntity(float delta, Entity e) {
-    // nothing by default
-  }
-
-  const std::set<Entity> LocalSystem::getEntities(int x, int y) const {
-    assert(x < m_width);
-    assert(y < m_height);
+  const std::set<Entity> LocalSystem::getEntities() const {
+    assert(0 <= m_x && m_x < m_width);
+    assert(0 <= m_y && m_y < m_height);
 
     std::set<Entity> ret;
 
-    int xmin = (x - 1 >= 0) ? x - 1 : x;
-    int xmax = (x + 1 < m_width) ? x + 1 : x;
-    int ymin = (y - 1 >= 0) ? y - 1 : y;
-    int ymax = (y + 1 < m_height) ? y + 1 : y;
+    int xmin = (m_x - 1 >= 0) ? m_x - 1 : m_x;
+    int xmax = (m_x + 1 < m_width) ? m_x + 1 : m_x;
+    int ymin = (m_y - 1 >= 0) ? m_y - 1 : m_y;
+    int ymax = (m_y + 1 < m_height) ? m_y + 1 : m_y;
 
-    for (x = xmin; x <= xmax; ++x) {
-      for (y = ymin; y <= ymax; ++y) {
+    for (int x = xmin; x <= xmax; ++x) {
+      for (int y = ymin; y <= ymax; ++y) {
         int index = y * m_width + x;
         auto& set = m_entities[index];
         ret.insert(set.begin(), set.end());
