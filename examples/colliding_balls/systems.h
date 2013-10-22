@@ -33,7 +33,7 @@ public:
     , m_world(world)
   { }
 
-  virtual void preUpdate() override;
+  virtual void preUpdate(float delta) override;
 
 private:
   sf::RenderWindow *m_window;
@@ -49,7 +49,6 @@ public:
 
   virtual void init() override;
   virtual void update(float delta) override;
-  virtual void updateEntity(float delta, es::Entity e) override;
 
 private:
   b2World *m_world;
@@ -72,9 +71,9 @@ public:
     , m_window(window)
   { }
 
-  virtual void preUpdate() override;
+  virtual void preUpdate(float delta) override;
   virtual void updateEntity(float delta, es::Entity e) override;
-  virtual void postUpdate() override;
+  virtual void postUpdate(float delta) override;
 
 private:
   sf::RenderWindow *m_window;
