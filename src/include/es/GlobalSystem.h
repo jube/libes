@@ -27,7 +27,7 @@ namespace es {
     {
     }
 
-    virtual void accept(SystemVisitor& vis);
+    virtual void accept(SystemVisitor& vis) override;
 
     virtual bool addEntity(Entity e) override;
     virtual bool removeEntity(Entity e) override;
