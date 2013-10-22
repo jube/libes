@@ -19,7 +19,6 @@
 #include <algorithm>
 
 #include <es/System.h>
-#include <es/SystemVisitor.h>
 
 namespace es {
 

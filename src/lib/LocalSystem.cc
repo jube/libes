@@ -16,13 +16,8 @@
 #include <es/LocalSystem.h>
 
 #include <cassert>
-#include <es/SystemVisitor.h>
 
 namespace es {
-
-  void LocalSystem::accept(SystemVisitor& vis) {
-    vis.visitLocalSystem(*this);
-  }
 
   void LocalSystem::update(float delta) {
     auto copy = getEntities();

@@ -50,8 +50,6 @@ namespace es {
 
     virtual ~System();
 
-    virtual void accept(SystemVisitor& vis) = 0;
-
     /**
      * @brief Get the priority of the system.
      *

@@ -31,7 +31,6 @@ namespace es {
     {
     }
 
-    virtual void accept(SystemVisitor& vis) override;
     virtual void update(float delta);
 
     /**
