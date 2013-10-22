@@ -20,7 +20,7 @@
 #include "archetypes.h"
 #include "parameters.h"
 
-void Input::preUpdate() {
+void Input::preUpdate(float delta) {
   sf::Event event;
 
   while (m_window->pollEvent(event)) {
@@ -103,10 +103,6 @@ void Physics::update(float delta) {
   m_world->Step(delta, velocityIterations, positionIterations);
 }
 
-void Physics::updateEntity(float delta, es::Entity e) {
-
-}
-
 
 void Graphics::updateEntity(float delta, es::Entity e) {
   Body *body = getManager()->getComponent<Body>(e);
@@ -126,7 +122,7 @@ void Graphics::updateEntity(float delta, es::Entity e) {
 }
 
 
-void Render::preUpdate() {
+void Render::preUpdate(float delta) {
   m_window->clear(sf::Color::White);
 }
 
@@ -145,6 +141,6 @@ void Render::updateEntity(float delta, es::Entity e) {
   m_window->draw(shape);
 }
 
-void Render::postUpdate() {
+void Render::postUpdate(float delta) {
   m_window->display();
 }

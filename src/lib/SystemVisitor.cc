@@ -13,23 +13,19 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#include <es/System.h>
+#include <es/SystemVisitor.h>
 
 namespace es {
 
-  System::~System() {
+  SystemVisitor::~SystemVisitor() {
   }
 
-  void System::init() {
-    // nothing by default
+  void SystemVisitor::visitGlobalSystem(GlobalSystem& sys) {
+    // nothing to do by default
   }
 
-  void System::preUpdate(float delta) {
-    // nothing by default
-  }
-
-  void System::postUpdate(float delta) {
-    // nothing by default
+  void SystemVisitor::visitLocalSystem(LocalSystem& sys) {
+    // nothing to do by default
   }
 
 }

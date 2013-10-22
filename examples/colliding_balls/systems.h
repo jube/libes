@@ -16,7 +16,7 @@
 #ifndef SYSTEMS_H
 #define SYSTEMS_H
 
-#include <es/System.h>
+#include <es/GlobalSystem.h>
 #include <es/Manager.h>
 
 #include <SFML/Graphics.hpp>
@@ -25,56 +25,55 @@
 
 #include "components.h"
 
-class Input : public es::System {
+class Input : public es::GlobalSystem {
 public:
   Input(es::Manager *manager, sf::RenderWindow *window, b2World *world)
-    : System(1, {  }, manager)
+    : GlobalSystem(1, {  }, manager)
     , m_window(window)
     , m_world(world)
   { }
 
-  virtual void preUpdate() override;
+  virtual void preUpdate(float delta) override;
 
 private:
   sf::RenderWindow *m_window;
   b2World *m_world;
 };
 
-class Physics : public es::System {
+class Physics : public es::GlobalSystem {
 public:
   Physics(es::Manager *manager, b2World *world)
-    : System(2, { Body::type }, manager)
+    : GlobalSystem(2, { Body::type }, manager)
     , m_world(world)
   { }
 
   virtual void init() override;
   virtual void update(float delta) override;
-  virtual void updateEntity(float delta, es::Entity e) override;
 
 private:
   b2World *m_world;
 };
 
-class Graphics : public es::System {
+class Graphics : public es::GlobalSystem {
 public:
   Graphics(es::Manager *manager)
-    : System(3, { Body::type, Coords::type }, manager)
+    : GlobalSystem(3, { Body::type, Coords::type }, manager)
   { }
 
   virtual void updateEntity(float delta, es::Entity e) override;
 
 };
 
-class Render : public es::System {
+class Render : public es::GlobalSystem {
 public:
   Render(es::Manager *manager, sf::RenderWindow *window)
-    : System(4, { Coords::type, Look::type }, manager)
+    : GlobalSystem(4, { Coords::type, Look::type }, manager)
     , m_window(window)
   { }
 
-  virtual void preUpdate() override;
+  virtual void preUpdate(float delta) override;
   virtual void updateEntity(float delta, es::Entity e) override;
-  virtual void postUpdate() override;
+  virtual void postUpdate(float delta) override;
 
 private:
   sf::RenderWindow *m_window;

@@ -13,23 +13,21 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#include <es/System.h>
+#ifndef ES_SYSTEM_VISITOR_H
+#define ES_SYSTEM_VISITOR_H
+
+#include "GlobalSystem.h"
+#include "LocalSystem.h"
 
 namespace es {
 
-  System::~System() {
-  }
-
-  void System::init() {
-    // nothing by default
-  }
-
-  void System::preUpdate(float delta) {
-    // nothing by default
-  }
-
-  void System::postUpdate(float delta) {
-    // nothing by default
-  }
+  class SystemVisitor {
+  public:
+    virtual ~SystemVisitor();
+    virtual void visitGlobalSystem(GlobalSystem& sys);
+    virtual void visitLocalSystem(LocalSystem& sys);
+  };
 
 }
+
+#endif // ES_SYSTEM_VISITOR_H
