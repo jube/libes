@@ -140,8 +140,10 @@ namespace es {
 
     class UpdateVisitor : public SystemVisitor {
     public:
-      UpdateVisitor(float _delta)
+      UpdateVisitor(float _delta, int _x, int _y)
       : delta(_delta)
+      , x(_x)
+      , y(_y)
       {
       }
 
@@ -149,8 +151,14 @@ namespace es {
         sys.update(delta);
       }
 
+      virtual void visitLocalSystem(LocalSystem& sys) override {
+        sys.update(delta, x, y);
+      }
+
     private:
       const float delta;
+      const int x;
+      const int y;
     };
 
 
@@ -161,7 +169,7 @@ namespace es {
       sys->preUpdate(delta);
     }
 
-    UpdateVisitor vis(delta);
+    UpdateVisitor vis(delta, m_x, m_y);
     for (auto& sys : m_systems) {
       sys->accept(vis);
     }
