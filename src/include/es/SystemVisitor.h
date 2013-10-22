@@ -17,6 +17,7 @@
 #define ES_SYSTEM_VISITOR_H
 
 #include "GlobalSystem.h"
+#include "LocalSystem.h"
 
 namespace es {
 
@@ -24,6 +25,7 @@ namespace es {
   public:
     virtual ~SystemVisitor();
     virtual void visitGlobalSystem(GlobalSystem& sys);
+    virtual void visitLocalSystem(LocalSystem& sys);
   };
 
 }

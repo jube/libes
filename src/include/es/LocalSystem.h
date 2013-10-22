@@ -13,24 +13,25 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#ifndef ES_GLOBAL_SYSTEM_H
-#define ES_GLOBAL_SYSTEM_H
+#ifndef ES_LOCAL_SYSTEM_H
+#define ES_LOCAL_SYSTEM_H
+
+#include <vector>
 
 #include "System.h"
+#include "Entity.h"
 
 namespace es {
 
-  class GlobalSystem : public System {
+  class LocalSystem : public System {
   public:
-    GlobalSystem(int priority, std::set<ComponentType> needed, Manager *manager)
-      : System(priority, needed, manager)
+
+    LocalSystem(int priority, std::set<ComponentType> needed, Manager *manager, int width, int height)
+      : System(priority, needed, manager), m_width(width), m_height(height)
     {
     }
 
     virtual void accept(SystemVisitor& vis) override;
-
-    virtual bool addEntity(Entity e) override;
-    virtual bool removeEntity(Entity e) override;
 
     /**
      * @brief Update all the entities in the current time step.
@@ -39,8 +40,10 @@ namespace es {
      * added.
      *
      * @param delta the time (in second) since the last update
+     * @param x the x-coordinate of the focus
+     * @param y the y-coordinate of the focus
      */
-    virtual void update(float delta);
+    virtual void update(float delta, int x, int y);
 
     /**
      * @brief Update an entity in the current time step.
@@ -52,24 +55,15 @@ namespace es {
      */
     virtual void updateEntity(float delta, Entity e);
 
-
   protected:
-    /**
-     * @brief Get a copy of the entities handled by this system.
-     *
-     * @returns the set of entities.
-     */
-    const std::set<Entity> getEntities() const {
-      return m_entities;
-    }
+    const std::set<Entity> getEntities(int x, int y) const;
 
   private:
-    std::set<Entity> m_entities;
-
+    const int m_width;
+    const int m_height;
+    std::vector<std::set<Entity>> m_entities;
   };
 
-
 }
-
 
 #endif // ES_GLOBAL_SYSTEM_H

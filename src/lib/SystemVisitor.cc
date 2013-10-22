@@ -24,4 +24,8 @@ namespace es {
     // nothing to do by default
   }
 
+  void SystemVisitor::visitLocalSystem(LocalSystem& sys) {
+    // nothing to do by default
+  }
+
 }
