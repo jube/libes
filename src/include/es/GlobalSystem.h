@@ -55,11 +55,11 @@ namespace es {
 
   protected:
     /**
-     * @brief Get the set of entities handled by this system.
+     * @brief Get a copy of the entities handled by this system.
      *
      * @returns the set of entities.
      */
-    const std::set<Entity>& getEntities() {
+    const std::set<Entity> getEntities() {
       return m_entities;
     }
 

@@ -37,7 +37,7 @@ namespace es {
     /* make a copy so that the entities can be safely removed from the system
      * without invalidating the iterators.
      */
-    auto copy = m_entities;
+    auto copy = getEntities();
     for (Entity e : copy) {
       updateEntity(delta, e);
     }
