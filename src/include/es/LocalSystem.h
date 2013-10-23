@@ -32,7 +32,7 @@ namespace es {
     {
       assert(width > 0);
       assert(height > 0);
-      m_entities.reserve(width * height);
+      m_entities.resize(width * height);
     }
 
     virtual void update(float delta);
