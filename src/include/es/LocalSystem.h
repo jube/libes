@@ -16,6 +16,7 @@
 #ifndef ES_LOCAL_SYSTEM_H
 #define ES_LOCAL_SYSTEM_H
 
+#include <cassert>
 #include <vector>
 
 #include "System.h"
@@ -29,6 +30,9 @@ namespace es {
     LocalSystem(int priority, std::set<ComponentType> needed, Manager *manager, int width, int height)
       : System(priority, needed, manager), m_width(width), m_height(height), m_x(0), m_y(0)
     {
+      assert(width > 0);
+      assert(height > 0);
+      m_entities.reserve(width * height);
     }
 
     virtual void update(float delta);
