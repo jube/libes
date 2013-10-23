@@ -39,13 +39,30 @@ namespace es {
 
     for (int x = xmin; x <= xmax; ++x) {
       for (int y = ymin; y <= ymax; ++y) {
-        int index = y * m_width + x;
-        auto& set = m_entities[index];
+        auto& set = m_entities[getIndex(x, y)];
         ret.insert(set.begin(), set.end());
       }
     }
 
     return std::move(ret);
+  }
+
+  bool LocalSystem::addLocalEntity(Entity e, int x, int y) {
+    assert(0 <= x && x < m_width);
+    assert(0 <= y && y < m_height);
+
+    auto& set = m_entities[getIndex(x, y)];
+    auto ret = set.insert(e);
+    return ret.second;
+  }
+
+  bool LocalSystem::removeLocalEntity(Entity e, int x, int y) {
+    assert(0 <= x && x < m_width);
+    assert(0 <= y && y < m_height);
+
+    auto& set = m_entities[getIndex(x, y)];
+    auto ret = set.erase(e);
+    return ret > 0;
   }
 
 }

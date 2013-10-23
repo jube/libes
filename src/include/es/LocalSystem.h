@@ -44,10 +44,18 @@ namespace es {
       m_y = y;
     }
 
+    bool addLocalEntity(Entity e, int x, int y);
+
+    bool removeLocalEntity(Entity e, int x, int y);
+
   protected:
     const std::set<Entity> getEntities() const;
 
   private:
+    int getIndex(int x, int y) const {
+      return y * m_width + x;
+    }
+
     const int m_width;
     const int m_height;
 
