@@ -28,14 +28,15 @@ namespace es {
   public:
 
     LocalSystem(int priority, std::set<ComponentType> needed, Manager *manager, int width, int height)
-      : System(priority, needed, manager), m_width(width), m_height(height), m_x(0), m_y(0)
+      : System(priority, needed, manager), m_width(width), m_height(height), m_x(0), m_y(0), m_entities(width * height)
     {
       assert(width > 0);
       assert(height > 0);
-      m_entities.resize(width * height);
     }
 
     virtual void update(float delta);
+
+    void reset(int width, int height);
 
     /**
      * @brief Set the focus for local systems.
@@ -60,8 +61,8 @@ namespace es {
       return y * m_width + x;
     }
 
-    const int m_width;
-    const int m_height;
+    int m_width;
+    int m_height;
 
     int m_x;
     int m_y;

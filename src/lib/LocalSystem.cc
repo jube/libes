@@ -26,6 +26,15 @@ namespace es {
     }
   }
 
+  void LocalSystem::reset(int width, int height) {
+    assert(width > 0);
+    assert(height > 0);
+    m_width = width;
+    m_height = height;
+    m_entities.clear();
+    m_entities.resize(m_width * m_height);
+  }
+
   const std::set<Entity> LocalSystem::getEntities() const {
     assert(0 <= m_x && m_x < m_width);
     assert(0 <= m_y && m_y < m_height);
