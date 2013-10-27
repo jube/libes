@@ -6,6 +6,7 @@
 
 * Change from unique_ptr to shared_ptr for systems in the Manager.
 * Add local systems, i.e. systems that put entities in a grid
+* Modified old systems into global systems
 
 ## `libes` 0.2
 
