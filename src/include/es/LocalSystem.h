@@ -16,6 +16,7 @@
 #ifndef ES_LOCAL_SYSTEM_H
 #define ES_LOCAL_SYSTEM_H
 
+#include <cassert>
 #include <vector>
 
 #include "System.h"
@@ -27,40 +28,45 @@ namespace es {
   public:
 
     LocalSystem(int priority, std::set<ComponentType> needed, Manager *manager, int width, int height)
-      : System(priority, needed, manager), m_width(width), m_height(height)
+      : System(priority, needed, manager), m_width(width), m_height(height), m_x(0), m_y(0), m_entities(width * height)
     {
+      assert(width > 0);
+      assert(height > 0);
     }
 
-    virtual void accept(SystemVisitor& vis) override;
+    virtual void update(float delta);
+
+    void reset(int width, int height);
 
     /**
-     * @brief Update all the entities in the current time step.
+     * @brief Set the focus for local systems.
      *
-     * By default, it calls updateEntity on every entity that was already
-     * added.
-     *
-     * @param delta the time (in second) since the last update
      * @param x the x-coordinate of the focus
      * @param y the y-coordinate of the focus
      */
-    virtual void update(float delta, int x, int y);
+    void setFocus(int x, int y) {
+      m_x = x;
+      m_y = y;
+    }
 
-    /**
-     * @brief Update an entity in the current time step.
-     *
-     * This function is called by update. By default, do nothing.
-     *
-     * @param delta the time (in second) since the last update
-     * @param e the entity
-     */
-    virtual void updateEntity(float delta, Entity e);
+    bool addLocalEntity(Entity e, int x, int y);
+
+    bool removeLocalEntity(Entity e, int x, int y);
 
   protected:
-    const std::set<Entity> getEntities(int x, int y) const;
+    const std::set<Entity> getEntities() const;
 
   private:
-    const int m_width;
-    const int m_height;
+    int getIndex(int x, int y) const {
+      return y * m_width + x;
+    }
+
+    int m_width;
+    int m_height;
+
+    int m_x;
+    int m_y;
+
     std::vector<std::set<Entity>> m_entities;
   };
 

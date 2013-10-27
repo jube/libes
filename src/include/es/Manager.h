@@ -42,7 +42,7 @@ namespace es {
      * @brief Create a manager.
      */
     Manager()
-    : m_next(1), m_x(0), m_y(0) { }
+    : m_next(1) { }
 
     ~Manager();
 
@@ -235,17 +235,6 @@ namespace es {
      */
     void updateSystems(float delta);
 
-    /**
-     * @brief Set the focus for local systems.
-     *
-     * @param x the x-coordinate of the focus
-     * @param y the y-coordinate of the focus
-     */
-    void setFocus(int x, int y) {
-      m_x = x;
-      m_y = y;
-    }
-
     /// @}
 
   private:
@@ -255,8 +244,6 @@ namespace es {
     std::vector<std::shared_ptr<System>> m_systems;
     std::map<ComponentType, Store *> m_stores;
 
-    int m_x;
-    int m_y;
   };
 
 }

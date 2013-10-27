@@ -32,4 +32,12 @@ namespace es {
     // nothing by default
   }
 
+  void System::update(float delta) {
+    // nothing by default
+  }
+
+  void System::updateEntity(float delta, Entity entity) {
+    // nothing by default
+  }
+
 }

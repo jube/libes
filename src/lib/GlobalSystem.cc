@@ -15,13 +15,7 @@
  */
 #include <es/GlobalSystem.h>
 
-#include <es/SystemVisitor.h>
-
 namespace es {
-
-  void GlobalSystem::accept(SystemVisitor& vis) {
-    vis.visitGlobalSystem(*this);
-  }
 
   bool GlobalSystem::addEntity(Entity e) {
     auto ret = m_entities.insert(e);
@@ -42,10 +36,5 @@ namespace es {
       updateEntity(delta, e);
     }
   }
-
-  void GlobalSystem::updateEntity(float delta, Entity entity) {
-    // nothing by default
-  }
-
 
 }
