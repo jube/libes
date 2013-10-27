@@ -243,6 +243,7 @@ namespace es {
     std::set<Entity> m_entities;
     std::vector<std::shared_ptr<System>> m_systems;
     std::map<ComponentType, Store *> m_stores;
+
   };
 
 }

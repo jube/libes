@@ -23,6 +23,7 @@
 
 namespace es {
   class Manager;
+  class SystemVisitor;
 
   /**
    * @brief A system.
@@ -35,7 +36,7 @@ namespace es {
     /**
      * @brief A system constructor.
      *
-     * @param priority the priority of the component (small priority will
+     * @param priority the priority of the system (small priority will
      * be executed first)
      * @param needed the set of needed component types that an entity must
      * have to be handled properly by this system
@@ -85,7 +86,7 @@ namespace es {
      * @param e the entity
      * @returns true if the entity was actually added
      */
-    bool addEntity(Entity e);
+    virtual bool addEntity(Entity e) = 0;
 
     /**
      * @brief Removes an entity from the system.
@@ -93,7 +94,7 @@ namespace es {
      * @param e the entity
      * @returns true if the entity was actually removed
      */
-    bool removeEntity(Entity e);
+    virtual bool removeEntity(Entity e) = 0;
 
     /**
      * @brief Initialize the system
@@ -107,7 +108,15 @@ namespace es {
      *
      * This function is called at every step. By default, do nothing.
      */
-    virtual void preUpdate();
+    virtual void preUpdate(float delta);
+
+    /**
+     * @brief Do something after the individual update of each entity.
+     *
+     * This function is called at every step. By default, do nothing.
+     *
+     */
+    virtual void postUpdate(float delta);
 
     /**
      * @brief Update all the entities in the current time step.
@@ -120,14 +129,6 @@ namespace es {
     virtual void update(float delta);
 
     /**
-     * @brief Do something after the individual update of each entity.
-     *
-     * This function is called at every step. By default, do nothing.
-     *
-     */
-    virtual void postUpdate();
-
-    /**
      * @brief Update an entity in the current time step.
      *
      * This function is called by update. By default, do nothing.
@@ -137,23 +138,12 @@ namespace es {
      */
     virtual void updateEntity(float delta, Entity e);
 
-  protected:
-    /**
-     * @brief Get the set of entities handled by this system.
-     *
-     * @returns the set of entities.
-     */
-    const std::set<Entity>& getEntities() {
-      return m_entities;
-    }
-
   private:
     const int m_priority;
     const std::set<ComponentType> m_needed;
 
     Manager * const m_manager;
 
-    std::set<Entity> m_entities;
   };
 
 }

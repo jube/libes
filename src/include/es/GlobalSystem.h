@@ -13,31 +13,42 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#include <es/System.h>
+#ifndef ES_GLOBAL_SYSTEM_H
+#define ES_GLOBAL_SYSTEM_H
+
+#include "System.h"
 
 namespace es {
 
-  System::~System() {
-  }
+  class GlobalSystem : public System {
+  public:
+    GlobalSystem(int priority, std::set<ComponentType> needed, Manager *manager)
+      : System(priority, needed, manager)
+    {
+    }
 
-  void System::init() {
-    // nothing by default
-  }
+    virtual void update(float delta) override;
 
-  void System::preUpdate(float delta) {
-    // nothing by default
-  }
+    virtual bool addEntity(Entity e) override;
+    virtual bool removeEntity(Entity e) override;
 
-  void System::postUpdate(float delta) {
-    // nothing by default
-  }
+  protected:
+    /**
+     * @brief Get a copy of the entities handled by this system.
+     *
+     * @returns the set of entities.
+     */
+    const std::set<Entity> getEntities() const {
+      return m_entities;
+    }
 
-  void System::update(float delta) {
-    // nothing by default
-  }
+  private:
+    std::set<Entity> m_entities;
 
-  void System::updateEntity(float delta, Entity entity) {
-    // nothing by default
-  }
+  };
+
 
 }
+
+
+#endif // ES_GLOBAL_SYSTEM_H
