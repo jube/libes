@@ -21,15 +21,34 @@
 
 namespace es {
 
+  /**
+   * @brief The status of an event handler at the end.
+   */
   enum class EventStatus {
-    KEEP,
-    DIE,
+    KEEP, /**< The handler must be kept */
+    DIE,  /**< The handler can be removed */
   };
 
+  /**
+   * @brief An event handler.
+   */
   class EventHandler {
   public:
+    /**
+     * @brief Destroy the handler.
+     *
+     * It is made virtual in order to prevent memory leaks.
+     */
     virtual ~EventHandler();
 
+    /**
+     * @brief Handle an event.
+     *
+     * @param origin the entity that triggers the event
+     * @param type the event type
+     * @param event the event parameters
+     * @return the status of the handler at the end
+     */
     virtual EventStatus onEvent(Entity origin, EventType type, Event *event) = 0;
   };
 
