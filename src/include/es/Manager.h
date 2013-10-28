@@ -24,6 +24,8 @@
 #include <vector>
 
 #include "Entity.h"
+#include "Event.h"
+#include "EventHandler.h"
 #include "Store.h"
 #include "System.h"
 
@@ -237,12 +239,36 @@ namespace es {
 
     /// @}
 
+
+    /// @{
+
+    void registerHandler(EventType type, std::shared_ptr<EventHandler> handler);
+
+    template<typename E>
+    void registerHandler(std::shared_ptr<EventHandler> handler) {
+      static_assert(std::is_base_of<Event, E>::value, "E must be an Event");
+      static_assert(E::type != INVALID_EVENT, "E must define its type");
+      registerHandler(E::type, handler);
+    }
+
+    void triggerEvent(Entity origin, EventType type, Event *event);
+
+    template<typename E>
+    void triggerEvent(Entity origin, E *event) {
+      static_assert(std::is_base_of<Event, E>::value, "E must be an Event");
+      static_assert(E::type != INVALID_EVENT, "E must define its type");
+      triggerEvent(origin, E::type, event);
+    }
+
+    /// @}
+
   private:
     Entity m_next;
 
     std::set<Entity> m_entities;
     std::vector<std::shared_ptr<System>> m_systems;
     std::map<ComponentType, Store *> m_stores;
+    std::map<EventType, std::set<std::shared_ptr<EventHandler>>> m_handlers;
 
   };
 
