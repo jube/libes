@@ -34,7 +34,8 @@ es::Entity createBall(es::Manager *manager, sf::Vector2f pos) {
     static_cast<sf::Uint8>(std::rand() % 256),
     192 // some transparency
   }));
-  manager->subscribeEntityToSystems(e, { Position::type, Speed::type, Coords::type, Look::type });
+
+  manager->subscribeEntityToSystems(e);
 
   return e;
 }
