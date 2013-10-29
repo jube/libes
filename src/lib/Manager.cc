@@ -149,4 +149,41 @@ namespace es {
     }
   }
 
+
+  void Manager::registerHandler(EventType type, std::shared_ptr<EventHandler> handler) {
+    assert(handler);
+    auto it = m_handlers.find(type);
+
+    if (it == m_handlers.end()) {
+      bool inserted;
+      std::tie(it, inserted) = m_handlers.insert(std::make_pair(type, std::set<std::shared_ptr<EventHandler>>()));
+      assert(inserted);
+    }
+
+    it->second.insert(handler);
+  }
+
+  void Manager::triggerEvent(es::Entity origin, EventType type, Event *event) {
+    auto it = m_handlers.find(type);
+
+    if (it == m_handlers.end()) {
+      return;
+    }
+
+    std::vector<std::shared_ptr<EventHandler>> dead;
+
+    for (auto handler : it->second) {
+      if (handler->onEvent(origin, type, event) == EventStatus::DIE) {
+        dead.push_back(handler);
+      }
+    }
+
+    /* The dead handlers are removed after event handling so that the
+     * iterators are always valid in the previous loop.
+     */
+    for (auto handler : dead) {
+      it->second.erase(handler);
+    }
+  }
+
 }
