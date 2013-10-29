@@ -70,9 +70,7 @@ namespace es {
      *
      * @returns a copy of the set of entities
      */
-    std::set<Entity> getEntities() const {
-      return m_entities;
-    }
+    std::set<Entity> getEntities() const;
 
     /// @}
 
@@ -205,6 +203,18 @@ namespace es {
     int subscribeEntityToSystems(Entity e, std::set<ComponentType> components);
 
     /**
+     * @brief Subscribe and entity to the systems.
+     *
+     * The manager uses the component types of the components that have been
+     * added to the entity.
+     *
+     * @param e the entity
+     * @returns the number of systems the entity was subscribed
+     *
+     */
+    int subscribeEntityToSystems(Entity e);
+
+    /**
      * @brief Add a system to the manager.
      *
      * @param sys the system
@@ -293,7 +303,7 @@ namespace es {
   private:
     Entity m_next;
 
-    std::set<Entity> m_entities;
+    std::map<Entity, std::set<ComponentType>> m_entities;
     std::vector<std::shared_ptr<System>> m_systems;
     std::map<ComponentType, Store *> m_stores;
     std::map<EventType, std::set<std::shared_ptr<EventHandler>>> m_handlers;
