@@ -92,7 +92,7 @@ namespace es {
      */
     auto it = m_entities.find(e);
 
-    if (it != m_entities.end()) {
+    if (it == m_entities.end()) {
       // this probably indicates that the entity has not been created here
       return false;
     }
@@ -116,7 +116,7 @@ namespace es {
      * de-associate the component type to the entity
      */
     auto it = m_entities.find(e);
-    if (it != m_entities.end()) {
+    if (it == m_entities.end()) {
       // this probably indicates that the entity has already been destroyed
       return nullptr;
     }
@@ -150,7 +150,7 @@ namespace es {
   int Manager::subscribeEntityToSystems(Entity e) {
     auto it = m_entities.find(e);
 
-    if (it != m_entities.end()) {
+    if (it == m_entities.end()) {
       return 0;
     }
 
