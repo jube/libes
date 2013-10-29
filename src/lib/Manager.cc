@@ -32,7 +32,7 @@ namespace es {
   Entity Manager::createEntity() {
     Entity e = m_next++;
     assert(e != INVALID_ENTITY);
-    auto ret = m_entities.insert(e);
+    auto ret = m_entities.emplace(e, std::set<ComponentType>());
     assert(ret.second);
     return e;
   }
@@ -40,6 +40,16 @@ namespace es {
   bool Manager::destroyEntity(Entity e) {
     auto count = m_entities.erase(e);
     return count > 0;
+  }
+
+  std::set<Entity> Manager::getEntities() const {
+    std::set<Entity> ret;
+
+    for (auto entity : m_entities) {
+      ret.insert(entity.first);
+    }
+
+    return std::move(ret);
   }
 
   Store *Manager::getStore(ComponentType ct) {
@@ -77,6 +87,17 @@ namespace es {
       return false;
     }
 
+    /*
+     * associate the component type to the entity
+     */
+    auto it = m_entities.find(e);
+
+    if (it == m_entities.end()) {
+      // this probably indicates that the entity has not been created here
+      return false;
+    }
+
+    it->second.insert(ct);
     return store->add(e, c);
   }
 
@@ -90,6 +111,16 @@ namespace es {
     if (store == nullptr) {
       return nullptr;
     }
+
+    /*
+     * de-associate the component type to the entity
+     */
+    auto it = m_entities.find(e);
+    if (it == m_entities.end()) {
+      // this probably indicates that the entity has already been destroyed
+      return nullptr;
+    }
+    it->second.erase(ct);
 
     Component *c = store->get(e);
     store->remove(e);
@@ -114,6 +145,16 @@ namespace es {
     }
 
     return n;
+  }
+
+  int Manager::subscribeEntityToSystems(Entity e) {
+    auto it = m_entities.find(e);
+
+    if (it == m_entities.end()) {
+      return 0;
+    }
+
+    return subscribeEntityToSystems(e, it->second);
   }
 
 

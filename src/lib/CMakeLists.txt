@@ -1,6 +1,5 @@
 
 set(LIBES_SRC
-  Archetype.cc
   EventHandler.cc
   GlobalSystem.cc
   LocalSystem.cc

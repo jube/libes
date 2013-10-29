@@ -56,7 +56,8 @@ es::Entity createBall(es::Manager *manager, b2Vec2 pos, b2World *world) {
     static_cast<sf::Uint8>(std::rand() % 256),
     192 // some transparency
   }));
-  manager->subscribeEntityToSystems(e, { Body::type, Coords::type, Look::type });
+
+  manager->subscribeEntityToSystems(e);
 
   return e;
 }
