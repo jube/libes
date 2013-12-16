@@ -46,7 +46,7 @@ es::Entity createBall(es::Manager *manager, b2Vec2 pos, b2World *world) {
     static_cast<float>(std::rand() % 200 - 100) / 1000.0f,
     static_cast<float>(std::rand() % 50) / 1000.0f
   );
-  body->ApplyLinearImpulse(impulse, body->GetWorldCenter());
+  body->ApplyLinearImpulse(impulse, body->GetWorldCenter(), true);
 
   manager->addComponent(e, new Body(body));
   manager->addComponent(e, new Coords({ 0., 0.}));
