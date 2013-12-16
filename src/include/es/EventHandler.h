@@ -16,6 +16,8 @@
 #ifndef ES_EVENT_HANDLER_H
 #define ES_EVENT_HANDLER_H
 
+#include <functional>
+
 #include "Entity.h"
 #include "Event.h"
 
@@ -31,26 +33,13 @@ namespace es {
 
   /**
    * @brief An event handler.
+   *
+   * @param origin the entity that triggers the event
+   * @param type the event type
+   * @param event the event parameters
+   * @return the status of the handler at the end
    */
-  class EventHandler {
-  public:
-    /**
-     * @brief Destroy the handler.
-     *
-     * It is made virtual in order to prevent memory leaks.
-     */
-    virtual ~EventHandler();
-
-    /**
-     * @brief Handle an event.
-     *
-     * @param origin the entity that triggers the event
-     * @param type the event type
-     * @param event the event parameters
-     * @return the status of the handler at the end
-     */
-    virtual EventStatus onEvent(Entity origin, EventType type, Event *event) = 0;
-  };
+  typedef std::function<EventStatus(Entity, EventType, Event*)> EventHandler;
 
 }
 

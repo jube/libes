@@ -258,7 +258,7 @@ namespace es {
      * @param type an event type
      * @param handler the event handler
      */
-    void registerHandler(EventType type, std::shared_ptr<EventHandler> handler);
+    void registerHandler(EventType type, EventHandler handler);
 
     /**
      * @brief Register an event handler to an event type.
@@ -266,7 +266,7 @@ namespace es {
      * @param handler the event handler
      */
     template<typename E>
-    void registerHandler(std::shared_ptr<EventHandler> handler) {
+    void registerHandler(EventHandler handler) {
       static_assert(std::is_base_of<Event, E>::value, "E must be an Event");
       static_assert(E::type != INVALID_EVENT, "E must define its type");
       registerHandler(E::type, handler);
@@ -306,7 +306,7 @@ namespace es {
     std::map<Entity, std::set<ComponentType>> m_entities;
     std::vector<std::shared_ptr<System>> m_systems;
     std::map<ComponentType, Store *> m_stores;
-    std::map<EventType, std::set<std::shared_ptr<EventHandler>>> m_handlers;
+    std::map<EventType, std::vector<EventHandler>> m_handlers;
 
   };
 

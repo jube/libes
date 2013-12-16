@@ -2,7 +2,4 @@
 
 namespace es {
 
-  EventHandler::~EventHandler() {
-  }
-
 }
