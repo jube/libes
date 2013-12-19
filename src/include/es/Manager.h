@@ -24,6 +24,8 @@
 #include <vector>
 
 #include "Entity.h"
+#include "Event.h"
+#include "EventHandler.h"
 #include "Store.h"
 #include "System.h"
 
@@ -68,9 +70,7 @@ namespace es {
      *
      * @returns a copy of the set of entities
      */
-    std::set<Entity> getEntities() const {
-      return m_entities;
-    }
+    std::set<Entity> getEntities() const;
 
     /// @}
 
@@ -203,6 +203,18 @@ namespace es {
     int subscribeEntityToSystems(Entity e, std::set<ComponentType> components);
 
     /**
+     * @brief Subscribe and entity to the systems.
+     *
+     * The manager uses the component types of the components that have been
+     * added to the entity.
+     *
+     * @param e the entity
+     * @returns the number of systems the entity was subscribed
+     *
+     */
+    int subscribeEntityToSystems(Entity e);
+
+    /**
      * @brief Add a system to the manager.
      *
      * @param sys the system
@@ -237,12 +249,64 @@ namespace es {
 
     /// @}
 
+
+    /// @{
+
+    /**
+     * @brief Register an event handler to an event type.
+     *
+     * @param type an event type
+     * @param handler the event handler
+     */
+    void registerHandler(EventType type, EventHandler handler);
+
+    /**
+     * @brief Register an event handler to an event type.
+     *
+     * @param handler the event handler
+     */
+    template<typename E>
+    void registerHandler(EventHandler handler) {
+      static_assert(std::is_base_of<Event, E>::value, "E must be an Event");
+      static_assert(E::type != INVALID_EVENT, "E must define its type");
+      registerHandler(E::type, handler);
+    }
+
+    /**
+     * @brief Trigger an event.
+     *
+     * The event is dispatched to registered handlers.
+     *
+     * @param origin the entity that triggers the event
+     * @param type the event type
+     * @param event the event parameters
+     */
+    void triggerEvent(Entity origin, EventType type, Event *event);
+
+    /**
+     * @brief Trigger an event.
+     *
+     * The event is dispatched to registered handlers.
+     *
+     * @param origin the entity that triggers the event
+     * @param event the event parameters
+     */
+    template<typename E>
+    void triggerEvent(Entity origin, E *event) {
+      static_assert(std::is_base_of<Event, E>::value, "E must be an Event");
+      static_assert(E::type != INVALID_EVENT, "E must define its type");
+      triggerEvent(origin, E::type, event);
+    }
+
+    /// @}
+
   private:
     Entity m_next;
 
-    std::set<Entity> m_entities;
+    std::map<Entity, std::set<ComponentType>> m_entities;
     std::vector<std::shared_ptr<System>> m_systems;
     std::map<ComponentType, Store *> m_stores;
+    std::map<EventType, std::vector<EventHandler>> m_handlers;
 
   };
 

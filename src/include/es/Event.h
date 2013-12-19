@@ -13,22 +13,34 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#include <es/Archetype.h>
-
-#include <cassert>
+#ifndef ES_EVENT_H
+#define ES_EVENT_H
 
 namespace es {
 
-  Entity Archetype::create(Manager *manager, std::set<ComponentType> components) {
-    assert(manager);
+  /**
+   * @brief An event type.
+   *
+   * An event type is a strictly positive integer that must be unique among
+   * all event types.
+   */
+  typedef unsigned long EventType;
 
-    Entity e = manager->createEntity();
-    assert(e != INVALID_ENTITY);
+#define INVALID_EVENT 0
 
-    int n = manager->subscribeEntityToSystems(e, components);
-    assert(n > 0);
-
-    return e;
-  }
+  /**
+   * @brief An event.
+   *
+   * This structure is empty and must be the father of all events. An event
+   * must have a class variable to indicate its type.
+   */
+  struct Event {
+    /**
+     * The default (invalid) event type.
+     */
+    static const EventType type = INVALID_EVENT;
+  };
 
 }
+
+#endif // ES_EVENT_H

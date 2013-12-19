@@ -13,35 +13,34 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#ifndef ES_ARCHETYPE_H
-#define ES_ARCHETYPE_H
+#ifndef ES_EVENT_HANDLER_H
+#define ES_EVENT_HANDLER_H
 
-#include <set>
+#include <functional>
 
-#include "Component.h"
 #include "Entity.h"
-#include "Manager.h"
+#include "Event.h"
 
 namespace es {
 
   /**
-   * @brief An archetype.
-   *
-   * An archetype is a set of components types.
+   * @brief The status of an event handler at the end.
    */
-  struct Archetype {
-
-    /**
-     * @brief Create a new entity with the declared component types.
-     *
-     * @param manager the manager
-     * @param components the set of component types that the entity has
-     * @returns a new entity
-     */
-    static Entity create(Manager *manager, std::set<ComponentType> components);
-
+  enum class EventStatus {
+    KEEP, /**< The handler must be kept */
+    DIE,  /**< The handler can be removed */
   };
+
+  /**
+   * @brief An event handler.
+   *
+   * @param origin the entity that triggers the event
+   * @param type the event type
+   * @param event the event parameters
+   * @return the status of the handler at the end
+   */
+  typedef std::function<EventStatus(Entity, EventType, Event*)> EventHandler;
 
 }
 
-#endif // ES_ARCHETYPE_H
+#endif // ES_EVENT_HANDLER_H

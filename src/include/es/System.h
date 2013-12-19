@@ -23,7 +23,6 @@
 
 namespace es {
   class Manager;
-  class SystemVisitor;
 
   /**
    * @brief A system.
