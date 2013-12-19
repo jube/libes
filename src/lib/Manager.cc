@@ -191,17 +191,17 @@ namespace es {
   }
 
 
-  void Manager::registerHandler(EventType type, std::shared_ptr<EventHandler> handler) {
+  void Manager::registerHandler(EventType type, EventHandler handler) {
     assert(handler);
     auto it = m_handlers.find(type);
 
     if (it == m_handlers.end()) {
       bool inserted;
-      std::tie(it, inserted) = m_handlers.insert(std::make_pair(type, std::set<std::shared_ptr<EventHandler>>()));
+      std::tie(it, inserted) = m_handlers.insert(std::make_pair(type, std::vector<EventHandler>()));
       assert(inserted);
     }
 
-    it->second.insert(handler);
+    it->second.push_back(handler);
   }
 
   void Manager::triggerEvent(es::Entity origin, EventType type, Event *event) {
@@ -211,20 +211,15 @@ namespace es {
       return;
     }
 
-    std::vector<std::shared_ptr<EventHandler>> dead;
+    std::vector<EventHandler> kept;
 
     for (auto handler : it->second) {
-      if (handler->onEvent(origin, type, event) == EventStatus::DIE) {
-        dead.push_back(handler);
+      if (handler(origin, type, event) == EventStatus::KEEP) {
+        kept.push_back(handler);
       }
     }
 
-    /* The dead handlers are removed after event handling so that the
-     * iterators are always valid in the previous loop.
-     */
-    for (auto handler : dead) {
-      it->second.erase(handler);
-    }
+    std::swap(it->second, kept);
   }
 
 }
