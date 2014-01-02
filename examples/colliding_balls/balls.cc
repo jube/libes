@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, Julien Bernard
+ * Copyright (c) 2013-2014, Julien Bernard
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
