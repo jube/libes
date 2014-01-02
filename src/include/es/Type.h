@@ -13,45 +13,31 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#ifndef COMPONENTS_H
-#define COMPONENTS_H
+#ifndef ES_TYPE_H
+#define ES_TYPE_H
 
-#include <es/Component.h>
+#include <cstdint>
 
-#include <SFML/Graphics.hpp>
-#include <Box2D/Box2D.h>
+namespace es {
 
-// The body of the ball in the world
-struct Body : public es::Component {
-  b2Body *body;
+  /**
+   * @brief A type.
+   *
+   * An type is a generic unsigned int that helps to distinguish several
+   * elements of the same class.
+   */
+  typedef uint64_t Type;
 
-  Body(b2Body *_body)
-    : body(_body)
-  { }
+#define INVALID_TYPE 0
 
-  static const es::ComponentType type = "Body"_type;
-};
+  constexpr Type Hash(const char *str, std::size_t sz) {
+    return sz == 0 ? 0xcbf29ce484222325 : (str[0] ^ Hash(str + 1, sz - 1)) * 0x100000001b3;
+  }
 
-// The coordinates of the ball on the screen
-struct Coords : public es::Component {
-  sf::Vector2f vec;
+}
 
-  Coords(sf::Vector2f _vec)
-    : vec(_vec)
-  { }
+constexpr es::Type operator"" _type(const char *str, std::size_t sz) {
+  return es::Hash(str, sz);
+}
 
-  static const es::ComponentType type = "Coords"_type;
-};
-
-// The appearance of the ball
-struct Look : public es::Component {
-  sf::Color color;
-
-  Look(sf::Color _color)
-    : color(_color)
-  { }
-
-  static const es::ComponentType type = "Look"_type;
-};
-
-#endif // COMPONENTS_H
+#endif // ES_TYPE_H

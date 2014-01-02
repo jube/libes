@@ -13,45 +13,5 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#ifndef COMPONENTS_H
-#define COMPONENTS_H
+#include <es/Type.h>
 
-#include <es/Component.h>
-
-#include <SFML/Graphics.hpp>
-#include <Box2D/Box2D.h>
-
-// The body of the ball in the world
-struct Body : public es::Component {
-  b2Body *body;
-
-  Body(b2Body *_body)
-    : body(_body)
-  { }
-
-  static const es::ComponentType type = "Body"_type;
-};
-
-// The coordinates of the ball on the screen
-struct Coords : public es::Component {
-  sf::Vector2f vec;
-
-  Coords(sf::Vector2f _vec)
-    : vec(_vec)
-  { }
-
-  static const es::ComponentType type = "Coords"_type;
-};
-
-// The appearance of the ball
-struct Look : public es::Component {
-  sf::Color color;
-
-  Look(sf::Color _color)
-    : color(_color)
-  { }
-
-  static const es::ComponentType type = "Look"_type;
-};
-
-#endif // COMPONENTS_H

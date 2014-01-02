@@ -16,6 +16,8 @@
 #ifndef ES_EVENT_H
 #define ES_EVENT_H
 
+#include <es/Type.h>
+
 namespace es {
 
   /**
@@ -24,7 +26,7 @@ namespace es {
    * An event type is a strictly positive integer that must be unique among
    * all event types.
    */
-  typedef unsigned long EventType;
+  typedef Type EventType;
 
 #define INVALID_EVENT 0
 
