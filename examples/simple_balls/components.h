@@ -28,7 +28,7 @@ struct Position : public es::Component {
     : vec(_vec)
   { }
 
-  static const es::ComponentType type = 1;
+  static const es::ComponentType type = "Position"_type;
 };
 
 // The speed of the ball in the world
@@ -39,7 +39,7 @@ struct Speed : public es::Component {
     : vec(_vec)
   { }
 
-  static const es::ComponentType type = 2;
+  static const es::ComponentType type = "Speed"_type;
 };
 
 // The coordinates of the ball on the screen
@@ -50,7 +50,7 @@ struct Coords : public es::Component {
     : vec(_vec)
   { }
 
-  static const es::ComponentType type = 3;
+  static const es::ComponentType type = "Coords"_type;
 };
 
 // The appearance of the ball
@@ -61,7 +61,7 @@ struct Look : public es::Component {
     : color(_color)
   { }
 
-  static const es::ComponentType type = 4;
+  static const es::ComponentType type = "Look"_type;
 };
 
 #endif // COMPONENTS_H

@@ -29,7 +29,7 @@ struct Body : public es::Component {
     : body(_body)
   { }
 
-  static const es::ComponentType type = 1;
+  static const es::ComponentType type = "Body"_type;
 };
 
 // The coordinates of the ball on the screen
@@ -40,7 +40,7 @@ struct Coords : public es::Component {
     : vec(_vec)
   { }
 
-  static const es::ComponentType type = 3;
+  static const es::ComponentType type = "Coords"_type;
 };
 
 // The appearance of the ball
@@ -51,7 +51,7 @@ struct Look : public es::Component {
     : color(_color)
   { }
 
-  static const es::ComponentType type = 4;
+  static const es::ComponentType type = "Look"_type;
 };
 
 #endif // COMPONENTS_H
