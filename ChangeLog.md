@@ -8,6 +8,10 @@
 * Remove Archetype
 * The Manager now remembers the components of each entity
 
+### 0.4.1 (18 Jan 2014)
+
+* Add a hash function and a user-defined operator to define types
+
 ## `libes` 0.3
 
 ### 0.3.0 (27 Oct 2013)
