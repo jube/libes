@@ -17,6 +17,7 @@
 #define ES_TYPE_H
 
 #include <cstdint>
+#include <string>
 
 namespace es {
 
@@ -32,6 +33,10 @@ namespace es {
 
   constexpr Type Hash(const char *str, std::size_t sz) {
     return sz == 0 ? 0xcbf29ce484222325 : (str[0] ^ Hash(str + 1, sz - 1)) * 0x100000001b3;
+  }
+
+  constexpr Type Hash(const std::string& str) {
+    return Hash(str.c_str(), str.size());
   }
 
 }
