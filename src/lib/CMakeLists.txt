@@ -6,6 +6,7 @@ set(LIBES_SRC
   Manager.cc
   Store.cc
   System.cc
+  Type.cc
 )
 
 add_library(es0 SHARED

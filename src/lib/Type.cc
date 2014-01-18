@@ -13,21 +13,5 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#ifndef ES_ENTITY_H
-#define ES_ENTITY_H
+#include <es/Type.h>
 
-namespace es {
-
-  /**
-   * @brief An entity, a game object.
-   *
-   * An entity has a very simple representation: a strictly positive integer.
-   * Everything else is in components.
-   */
-  typedef unsigned long Entity;
-
-#define INVALID_ENTITY 0
-
-}
-
-#endif // ES_ENTITY_H

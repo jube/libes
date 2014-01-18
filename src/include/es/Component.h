@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, Julien Bernard
+ * Copyright (c) 2013-2014, Julien Bernard
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -16,6 +16,8 @@
 #ifndef ES_COMPONENT_H
 #define ES_COMPONENT_H
 
+#include <es/Type.h>
+
 namespace es {
 
   /**
@@ -24,7 +26,7 @@ namespace es {
    * A component type is a strictly positive integer that must be unique
    * among all component types.
    */
-  typedef unsigned long ComponentType;
+  typedef Type ComponentType;
 
 #define INVALID_COMPONENT 0
 

@@ -13,21 +13,36 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#ifndef ES_ENTITY_H
-#define ES_ENTITY_H
+#ifndef ES_TYPE_H
+#define ES_TYPE_H
+
+#include <cstdint>
+#include <string>
 
 namespace es {
 
   /**
-   * @brief An entity, a game object.
+   * @brief A type.
    *
-   * An entity has a very simple representation: a strictly positive integer.
-   * Everything else is in components.
+   * An type is a generic unsigned int that helps to distinguish several
+   * elements of the same class.
    */
-  typedef unsigned long Entity;
+  typedef uint64_t Type;
 
-#define INVALID_ENTITY 0
+#define INVALID_TYPE 0
+
+  constexpr Type Hash(const char *str, std::size_t sz) {
+    return sz == 0 ? 0xcbf29ce484222325 : (str[0] ^ Hash(str + 1, sz - 1)) * 0x100000001b3;
+  }
+
+  constexpr Type Hash(const std::string& str) {
+    return Hash(str.c_str(), str.size());
+  }
 
 }
 
-#endif // ES_ENTITY_H
+constexpr es::Type operator"" _type(const char *str, std::size_t sz) {
+  return es::Hash(str, sz);
+}
+
+#endif // ES_TYPE_H
