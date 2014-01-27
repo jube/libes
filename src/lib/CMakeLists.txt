@@ -1,9 +1,11 @@
 
 set(LIBES_SRC
+  CustomSystem.cc
   EventHandler.cc
   GlobalSystem.cc
   LocalSystem.cc
   Manager.cc
+  SingleSystem.cc
   Store.cc
   System.cc
   Type.cc
