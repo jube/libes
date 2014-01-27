@@ -1,5 +1,11 @@
 # ChangeLog for `libes`
 
+## `libes` 0.5
+
+### 0.5.0 (??)
+
+* add an overload for `registerHandler`
+
 ## `libes` 0.4
 
 ### 0.4.0 (19 Dec 2013)
