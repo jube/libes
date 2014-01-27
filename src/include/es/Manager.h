@@ -273,6 +273,25 @@ namespace es {
     }
 
     /**
+     * @brief Register an event handler to an event type.
+     *
+     * This version of @a registerHandler works when the handler is defined in
+     * the method of a class (with the same signature as an EventHandler).
+     * Then, instead of calling @a std::bind directly, you can call this
+     * function and bind will be called automatically.
+     *
+     * @param pm a pointer to member function
+     * @param obj the object on which to apply the function
+     */
+    template<typename E, typename R, typename T>
+    void registerHandler(R T::*pm, T *obj) {
+      static_assert(std::is_base_of<Event, E>::value, "E must be an Event");
+      static_assert(E::type != INVALID_EVENT, "E must define its type");
+      registerHandler(E::type,
+          std::bind(pm, obj, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+    }
+
+    /**
      * @brief Trigger an event.
      *
      * The event is dispatched to registered handlers.
