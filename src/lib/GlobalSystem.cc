@@ -37,4 +37,8 @@ namespace es {
     }
   }
 
+  void GlobalSystem::updateEntity(float delta, Entity entity) {
+    // nothing by default
+  }
+
 }
