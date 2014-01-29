@@ -2,7 +2,7 @@
 
 ## `libes` 0.5
 
-### 0.5.0 (??)
+### 0.5.0 (29 Jan 2014)
 
 * add an overload for `registerHandler`
 * remove updateEntity from System (put it directly in LocalSystem and GlobalSystem)
