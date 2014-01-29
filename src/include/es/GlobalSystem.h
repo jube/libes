@@ -32,6 +32,16 @@ namespace es {
     virtual bool addEntity(Entity e) override;
     virtual bool removeEntity(Entity e) override;
 
+    /**
+     * @brief Update an entity in the current time step.
+     *
+     * This function is called by update. By default, do nothing.
+     *
+     * @param delta the time (in second) since the last update
+     * @param e the entity
+     */
+    virtual void updateEntity(float delta, Entity e);
+
   protected:
     /**
      * @brief Get a copy of the entities handled by this system.

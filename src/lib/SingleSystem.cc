@@ -13,32 +13,29 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#include <es/GlobalSystem.h>
+#include <es/SingleSystem.h>
+
+#include <cassert>
 
 namespace es {
 
-  bool GlobalSystem::addEntity(Entity e) {
-    auto ret = m_entities.insert(e);
-    return ret.second;
-  }
-
-  bool GlobalSystem::removeEntity(Entity e) {
-    auto ret = m_entities.erase(e);
-    return ret > 0;
-  }
-
-  void GlobalSystem::update(float delta) {
-    /* make a copy so that the entities can be safely removed from the system
-     * without invalidating the iterators.
-     */
-    auto copy = getEntities();
-    for (Entity e : copy) {
-      updateEntity(delta, e);
+  bool SingleSystem::addEntity(Entity e) {
+    if (m_entity == INVALID_ENTITY) {
+      m_entity = e;
+      return true;
     }
+
+    assert(m_entity == e);
+    return false;
   }
 
-  void GlobalSystem::updateEntity(float delta, Entity entity) {
-    // nothing by default
+  bool SingleSystem::removeEntity(Entity e) {
+    if (m_entity == e) {
+      m_entity = INVALID_ENTITY;
+      return true;
+    }
+
+    return false;
   }
 
 }

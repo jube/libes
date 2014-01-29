@@ -26,6 +26,10 @@ namespace es {
     }
   }
 
+  void LocalSystem::updateEntity(float delta, Entity entity) {
+    // nothing by default
+  }
+
   void LocalSystem::reset(int width, int height) {
     assert(width > 0);
     assert(height > 0);

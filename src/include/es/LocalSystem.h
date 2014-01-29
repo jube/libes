@@ -36,6 +36,16 @@ namespace es {
 
     virtual void update(float delta);
 
+    /**
+     * @brief Update an entity in the current time step.
+     *
+     * This function is called by update. By default, do nothing.
+     *
+     * @param delta the time (in second) since the last update
+     * @param e the entity
+     */
+    virtual void updateEntity(float delta, Entity e);
+
     void reset(int width, int height);
 
     /**
