@@ -13,32 +13,33 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#include <es/GlobalSystem.h>
+#ifndef ES_SINGLE_SYSTEM_H
+#define ES_SINGLE_SYSTEM_H
+
+#include "System.h"
 
 namespace es {
 
-  bool GlobalSystem::addEntity(Entity e) {
-    auto ret = m_entities.insert(e);
-    return ret.second;
-  }
+  class SingleSystem : public System {
+  public:
 
-  bool GlobalSystem::removeEntity(Entity e) {
-    auto ret = m_entities.erase(e);
-    return ret > 0;
-  }
-
-  void GlobalSystem::update(float delta) {
-    /* make a copy so that the entities can be safely removed from the system
-     * without invalidating the iterators.
-     */
-    auto copy = getEntities();
-    for (Entity e : copy) {
-      updateEntity(delta, e);
+    SingleSystem(int priority, std::set<ComponentType> needed, Manager *manager)
+      : System(priority, needed, manager)
+    {
     }
-  }
 
-  void GlobalSystem::updateEntity(float delta, Entity entity) {
-    // nothing by default
-  }
+    virtual bool addEntity(Entity e) override;
+    virtual bool removeEntity(Entity e) override;
+
+  protected:
+    Entity getEntity() {
+      return m_entity;
+    }
+
+  private:
+    Entity m_entity;
+  };
 
 }
+
+#endif // ES_SINGLE_SYSTEM_H

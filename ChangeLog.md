@@ -5,6 +5,8 @@
 ### 0.5.0 (??)
 
 * add an overload for `registerHandler`
+* remove updateEntity from System (put it directly in LocalSystem and GlobalSystem)
+* add CustomSystem and SingleSystem
 
 ## `libes` 0.4
 
