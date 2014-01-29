@@ -24,7 +24,7 @@ namespace es {
   public:
 
     SingleSystem(int priority, std::set<ComponentType> needed, Manager *manager)
-      : System(priority, needed, manager)
+      : System(priority, needed, manager), m_entity(INVALID_ENTITY)
     {
     }
 
