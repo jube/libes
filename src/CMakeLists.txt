@@ -4,9 +4,8 @@ project(LIBES CXX)
 
 include(CPackConfig.cmake)
 
-add_definitions(-Wall -g -O2)
-
 if (NOT MSVC)
+  add_definitions(-Wall -g -O2)
   add_definitions(-std=c++0x) # equivalent of -std=c++11, but the later works only for GCC >= 4.7
 endif (NOT MSVC)
 
