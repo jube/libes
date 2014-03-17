@@ -34,7 +34,7 @@ namespace es {
 
   bool Store::remove(Entity e) {
     auto count = m_store.erase(e);
-    return count > 1;
+    return count > 0;
   }
 
   std::set<Entity> Store::getEntities() const {
