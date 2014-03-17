@@ -6,11 +6,9 @@ include(CPackConfig.cmake)
 
 add_definitions(-Wall -g -O2)
 
-if (WIN32)
-  add_definitions(-std=c++0x)
-else (WIN32)
-  add_definitions(-std=c++11)
-endif (WIN32)
+if (NOT MSVC)
+  add_definitions(-std=c++0x) # equivalent of -std=c++11, but the later works only for GCC >= 4.7
+endif (NOT MSVC)
 
 include_directories("${CMAKE_SOURCE_DIR}/include")
 
