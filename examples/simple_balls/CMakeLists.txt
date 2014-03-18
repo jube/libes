@@ -2,7 +2,10 @@ cmake_minimum_required(VERSION 2.6)
 
 project(LIBES_DEMO CXX)
 
-add_definitions(-Wall -g -O2 -std=c++11)
+if (NOT MSVC)
+  add_definitions(-Wall -g -O2)
+  add_definitions(-std=c++0x) # equivalent of -std=c++11, but the later works only for GCC >= 4.7
+endif (NOT MSVC)
 
 find_package(PkgConfig REQUIRED)
 
