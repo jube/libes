@@ -19,6 +19,8 @@
 #include <cstdint>
 #include <string>
 
+#include <es/Support.h>
+
 namespace es {
 
   /**
@@ -31,6 +33,7 @@ namespace es {
 
 #define INVALID_TYPE 0
 
+#ifndef COMPILER_IS_NOT_CXX11_READY
   constexpr Type Hash(const char *str, std::size_t sz) {
     return sz == 0 ? 0xcbf29ce484222325 : (str[0] ^ Hash(str + 1, sz - 1)) * 0x100000001b3;
   }
@@ -38,11 +41,13 @@ namespace es {
   inline Type Hash(const std::string& str) {
     return Hash(str.c_str(), str.size());
   }
-
+#endif
 }
 
+#ifndef COMPILER_IS_NOT_CXX11_READY
 constexpr es::Type operator"" _type(const char *str, std::size_t sz) {
   return es::Hash(str, sz);
 }
+#endif
 
 #endif // ES_TYPE_H

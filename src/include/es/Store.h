@@ -21,8 +21,8 @@
 #include <set>
 #include <type_traits>
 
-#include "Entity.h"
-#include "Component.h"
+#include <es/Entity.h>
+#include <es/Component.h>
 
 namespace es {
 

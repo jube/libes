@@ -18,8 +18,8 @@
 
 #include <functional>
 
-#include "Entity.h"
-#include "Event.h"
+#include <es/Entity.h>
+#include <es/Event.h>
 
 namespace es {
 
