@@ -31,6 +31,9 @@ namespace es {
 
 #define INVALID_TYPE 0
 
+#if  (defined(__GNUC__) && (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 7)) || (__GNUC__ > 4))) \
+  || (defined(__clang__)) \
+  || (defined(_MSC_VER) && (_MSC_VER > 1800)) // > VS2013
   constexpr Type Hash(const char *str, std::size_t sz) {
     return sz == 0 ? 0xcbf29ce484222325 : (str[0] ^ Hash(str + 1, sz - 1)) * 0x100000001b3;
   }
@@ -38,11 +41,15 @@ namespace es {
   inline Type Hash(const std::string& str) {
     return Hash(str.c_str(), str.size());
   }
-
+#endif
 }
 
+#if  (defined(__GNUC__) && (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 7)) || (__GNUC__ > 4))) \
+  || (defined(__clang__)) \
+  || (defined(_MSC_VER) && (_MSC_VER > 1800)) // > VS2013
 constexpr es::Type operator"" _type(const char *str, std::size_t sz) {
   return es::Hash(str, sz);
 }
+#endif
 
 #endif // ES_TYPE_H
