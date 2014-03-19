@@ -17,6 +17,7 @@
 #define COMPONENTS_H
 
 #include <es/Component.h>
+#include <es/Support.h>
 
 #include <SFML/Graphics.hpp>
 #include <Box2D/Box2D.h>
@@ -29,7 +30,11 @@ struct Body : public es::Component {
     : body(_body)
   { }
 
+#ifndef COMPILER_IS_NOT_CXX11_READY
   static const es::ComponentType type = "Body"_type;
+#else
+  static const es::ComponentType type = 1;
+#endif
 };
 
 // The coordinates of the ball on the screen
@@ -40,7 +45,11 @@ struct Coords : public es::Component {
     : vec(_vec)
   { }
 
+#ifndef COMPILER_IS_NOT_CXX11_READY
   static const es::ComponentType type = "Coords"_type;
+#else
+  static const es::ComponentType type = 2;
+#endif
 };
 
 // The appearance of the ball
@@ -51,7 +60,11 @@ struct Look : public es::Component {
     : color(_color)
   { }
 
+#ifndef COMPILER_IS_NOT_CXX11_READY
   static const es::ComponentType type = "Look"_type;
+#else
+  static const es::ComponentType type = 3;
+#endif
 };
 
 #endif // COMPONENTS_H

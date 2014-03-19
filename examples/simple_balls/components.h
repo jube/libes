@@ -28,7 +28,11 @@ struct Position : public es::Component {
     : vec(_vec)
   { }
 
+#ifndef COMPILER_IS_NOT_CXX11_READY
   static const es::ComponentType type = "Position"_type;
+#else
+  static const es::ComponentType type = 1;
+#endif
 };
 
 // The speed of the ball in the world
@@ -39,7 +43,11 @@ struct Speed : public es::Component {
     : vec(_vec)
   { }
 
+#ifndef COMPILER_IS_NOT_CXX11_READY
   static const es::ComponentType type = "Speed"_type;
+#else
+  static const es::ComponentType type = 2;
+#endif
 };
 
 // The coordinates of the ball on the screen
@@ -50,7 +58,11 @@ struct Coords : public es::Component {
     : vec(_vec)
   { }
 
+#ifndef COMPILER_IS_NOT_CXX11_READY
   static const es::ComponentType type = "Coords"_type;
+#else
+  static const es::ComponentType type = 3;
+#endif
 };
 
 // The appearance of the ball
@@ -61,7 +73,11 @@ struct Look : public es::Component {
     : color(_color)
   { }
 
+#ifndef COMPILER_IS_NOT_CXX11_READY
   static const es::ComponentType type = "Look"_type;
+#else
+  static const es::ComponentType type = 4;
+#endif
 };
 
 #endif // COMPONENTS_H

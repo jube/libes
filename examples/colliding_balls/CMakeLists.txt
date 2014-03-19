@@ -4,7 +4,11 @@ project(LIBES_DEMO CXX)
 
 if (NOT MSVC)
   add_definitions(-Wall -g -O2)
-  add_definitions(-std=c++0x) # equivalent of -std=c++11, but the later works only for GCC >= 4.7
+  if (COMPILER_IS_NOT_CXX11_READY)
+    add_definitions(-std=c++0x) # equivalent of -std=c++11, but the later works only for GCC >= 4.7
+  else (COMPILER_IS_NOT_CXX11_READY)
+    add_definitions(-std=c++11)
+  endif (COMPILER_IS_NOT_CXX11_READY)
 endif (NOT MSVC)
 
 find_package(PkgConfig REQUIRED)
