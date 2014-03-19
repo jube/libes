@@ -19,6 +19,7 @@
 #include <algorithm>
 
 #include <es/System.h>
+#include <es/Support.h>
 
 namespace es {
 
@@ -32,8 +33,8 @@ namespace es {
   Entity Manager::createEntity() {
     Entity e = m_next++;
     assert(e != INVALID_ENTITY);
-#if defined(__GNUC__) && (__GNUC_MINOR__ < 8) // GCC 4.4 - 4.7 have std::move(), but only GCC >= 4.8 have map::emplace()
-    auto ret = m_entities.insert(std::move(std::make_pair(e, std::set<ComponentType>())));
+#ifndef COMPILER_IS_NOT_CXX11_READY
+    auto ret = m_entities.insert(std::make_pair(e, std::set<ComponentType>()));
 #else
     auto ret = m_entities.emplace(e, std::set<ComponentType>());
 #endif

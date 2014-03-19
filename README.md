@@ -48,6 +48,10 @@ Then you can check the [libes tutorial](https://github.com/jube/libes/blob/maste
 
 - Julien Bernard, julien dot bernard at univ dash fcomte dot fr
 
+## Contributors
+
+- Sébastien Rombauts, sebastien dot rombauts at gmail dot com
+
 ## ChangeLog
 
 See [ChangeLog.md](https://github.com/jube/libes/blob/master/ChangeLog.md).

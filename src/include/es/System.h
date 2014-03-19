@@ -18,8 +18,9 @@
 
 #include <set>
 
-#include "Entity.h"
-#include "Component.h"
+#include <es/Component.h>
+#include <es/Entity.h>
+#include <es/Support.h>
 
 namespace es {
   class Manager;

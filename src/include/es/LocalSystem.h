@@ -19,8 +19,8 @@
 #include <cassert>
 #include <vector>
 
-#include "System.h"
-#include "Entity.h"
+#include <es/System.h>
+#include <es/Entity.h>
 
 namespace es {
 
