@@ -1,0 +1,23 @@
+language: cpp
+compiler:
+  - gcc
+  - clang
+before_install:
+  - sudo apt-get update -qq
+install:
+  - sudo apt-get install -qq cmake
+script: ./travis-ci.sh
+branches:
+  only:
+    - master
+    - develop
+matrix:
+  fast_finish: true
+  include:
+    - compiler: clang
+      env: OPTIONS="-DCOMPILER_IS_NOT_CXX11_READY=OFF"
+
+notifications:
+  irc:
+    channels:
+      - "chat.freenode.net#akagoria"
