@@ -16,7 +16,7 @@
 #ifndef ES_SINGLE_SYSTEM_H
 #define ES_SINGLE_SYSTEM_H
 
-#include "System.h"
+#include <es/System.h>
 
 namespace es {
 

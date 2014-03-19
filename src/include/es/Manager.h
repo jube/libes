@@ -23,11 +23,11 @@
 #include <type_traits>
 #include <vector>
 
-#include "Entity.h"
-#include "Event.h"
-#include "EventHandler.h"
-#include "Store.h"
-#include "System.h"
+#include <es/Entity.h>
+#include <es/Event.h>
+#include <es/EventHandler.h>
+#include <es/Store.h>
+#include <es/System.h>
 
 namespace es {
 
