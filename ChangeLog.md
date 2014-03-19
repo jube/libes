@@ -4,9 +4,15 @@
 
 ### 0.5.0 (29 Jan 2014)
 
-* add an overload for `registerHandler`
-* remove updateEntity from System (put it directly in LocalSystem and GlobalSystem)
-* add CustomSystem and SingleSystem
+* Add an overload for `registerHandler`
+* Remove updateEntity from System (put it directly in LocalSystem and GlobalSystem)
+* Add CustomSystem and SingleSystem
+
+### 0.5.1 (19 Mar 2014)
+
+* Add an option COMPILER_IS_NOT_CXX11_READY to improve some builds (thanks @SRombauts)
+* Fix a little bug in `Store::remove` (thanks @SRombauts)
+* Make ChangeLog consistent
 
 ## `libes` 0.4
 
