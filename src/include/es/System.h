@@ -18,15 +18,9 @@
 
 #include <set>
 
-#include "Entity.h"
-#include "Component.h"
-
-// Detect whether the compiler supports C++11 virtual override specifiers.
-#if (defined(__GNUC__) && (__GNUC__ == 4) && ((__GNUC_MINOR__ < 7) || !defined(__GXX_EXPERIMENTAL_CXX0X__)))
-     /// GCC 4.7 and following have "override" and "final" support when called with -std=c++0x (or -std=c++11 starting with GCC 4.7)
-     /// GCC 4.6 and below does not know the "override" specifier, so we define it as nothing
-     #define override  // nothing
-#endif
+#include <es/Component.h>
+#include <es/Entity.h>
+#include <es/Support.h>
 
 namespace es {
   class Manager;
