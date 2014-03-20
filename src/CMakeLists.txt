@@ -2,7 +2,13 @@ cmake_minimum_required(VERSION 2.6)
 
 project(LIBES CXX)
 
-option(COMPILER_IS_NOT_CXX11_READY "The compiler is not ready yet for C++11 (GCC < 4.8, Clang < 3.3, MSVC)" TRUE)
+option(COMPILER_IS_NOT_CXX11_READY "The compiler is not ready yet for C++11 (GCC < 4.8, Clang < 3.3, MSVC)" ON)
+
+if (COMPILER_IS_NOT_CXX11_READY)
+  message(STATUS "Using C++0x")
+else (COMPILER_IS_NOT_CXX11_READY)
+  message(STATUS "Using C++11")
+endif (COMPILER_IS_NOT_CXX11_READY)
 
 include(CPackConfig.cmake)
 
