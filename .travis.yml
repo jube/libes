@@ -11,12 +11,14 @@ branches:
   only:
     - master
     - develop
-matrix:
-  fast_finish: true
-  include:
-    - compiler: clang
-      env: OPTIONS="-DCOMPILER_IS_NOT_CXX11_READY=OFF"
+#matrix:
+  #include:
+    #- compiler: clang
+      #env: OPTIONS="-DCOMPILER_IS_NOT_CXX11_READY=OFF"
 notifications:
   irc:
     channels:
       - "chat.freenode.net#akagoria"
+    on_success: change
+    on_failure: always
+
