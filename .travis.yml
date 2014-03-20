@@ -5,7 +5,7 @@ compiler:
 before_install:
   - sudo apt-get update -qq
 install:
-  - sudo apt-get install -qq cmake
+  - sudo apt-get install -q cmake
 script: ./travis-ci.sh
 branches:
   only:
@@ -16,7 +16,6 @@ matrix:
   include:
     - compiler: clang
       env: OPTIONS="-DCOMPILER_IS_NOT_CXX11_READY=OFF"
-
 notifications:
   irc:
     channels:
