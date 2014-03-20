@@ -14,6 +14,11 @@
 * Fix a little bug in `Store::remove` (thanks @SRombauts)
 * Make ChangeLog consistent
 
+### 0.5.2 (20 Mar 2014)
+
+* Add suport for Travis CI
+* Add a document about C++11 status for the project
+
 ## `libes` 0.4
 
 ### 0.4.0 (19 Dec 2013)
