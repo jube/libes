@@ -33,7 +33,7 @@ namespace es {
   Entity Manager::createEntity() {
     Entity e = m_next++;
     assert(e != INVALID_ENTITY);
-#ifndef COMPILER_IS_NOT_CXX11_READY
+#ifdef COMPILER_IS_NOT_CXX11_READY
     auto ret = m_entities.insert(std::make_pair(e, std::set<ComponentType>()));
 #else
     auto ret = m_entities.emplace(e, std::set<ComponentType>());
