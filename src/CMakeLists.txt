@@ -51,3 +51,9 @@ install(
   DIRECTORY "${CMAKE_BINARY_DIR}/include/es"
   DESTINATION include
 )
+
+install(
+  DIRECTORY "${CMAKE_BINARY_DIR}/doc/html"
+  DESTINATION "${CMAKE_INSTALL_PREFIX}/share/doc/es"
+  OPTIONAL
+)
