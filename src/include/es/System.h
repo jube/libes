@@ -28,7 +28,7 @@ namespace es {
   /**
    * @brief A system.
    *
-   * A system handles a set of components that belongs to an entity.
+   * A system handles a set of entities that share the same components.
    *
    */
   class System {
@@ -42,7 +42,6 @@ namespace es {
      * have to be handled properly by this system
      * @param manager the manager (that is saved in the system so that the
      * system can easily access the manager)
-     *
      */
     System(int priority, std::set<ComponentType> needed, Manager *manager)
     : m_priority(priority), m_needed(needed), m_manager(manager) {

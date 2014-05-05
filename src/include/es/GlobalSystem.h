@@ -20,8 +20,24 @@
 
 namespace es {
 
+  /**
+   * @brief A global system.
+   *
+   * A global system is a System that handles entities globally, as a set.
+   *
+   */
   class GlobalSystem : public System {
   public:
+    /**
+     * @brief Create a global system.
+     *
+     * @param priority the priority of the system (small priority will
+     * be executed first)
+     * @param needed the set of needed component types that an entity must
+     * have to be handled properly by this system
+     * @param manager the manager (that is saved in the system so that the
+     * system can easily access the manager)
+     */
     GlobalSystem(int priority, std::set<ComponentType> needed, Manager *manager)
       : System(priority, needed, manager)
     {

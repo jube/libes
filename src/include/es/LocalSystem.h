@@ -24,9 +24,27 @@
 
 namespace es {
 
+  /**
+   * @brief A local system.
+   *
+   * A local system handles the entities in a rectangular grid and updates the
+   * entities that are in the focused cell.
+   */
   class LocalSystem : public System {
   public:
 
+    /**
+     * @brief Create a local system.
+     *
+     * @param priority the priority of the system (small priority will
+     * be executed first)
+     * @param needed the set of needed component types that an entity must
+     * have to be handled properly by this system
+     * @param manager the manager (that is saved in the system so that the
+     * system can easily access the manager)
+     * @param width the width of the grid
+     * @param height the height of the grid
+     */
     LocalSystem(int priority, std::set<ComponentType> needed, Manager *manager, int width, int height)
       : System(priority, needed, manager), m_width(width), m_height(height), m_x(0), m_y(0), m_entities(width * height)
     {
@@ -46,6 +64,12 @@ namespace es {
      */
     virtual void updateEntity(float delta, Entity e);
 
+    /**
+     * @brief Reset the grid dimensions.
+     *
+     * @param width the width of the grid
+     * @param height the height of the grid
+     */
     void reset(int width, int height);
 
     /**
@@ -59,8 +83,24 @@ namespace es {
       m_y = y;
     }
 
+    /**
+     * @brief Add an entity in the (x,y) cell of the grid.
+     *
+     * @param e the entity
+     * @param x the x coordinate
+     * @param y the y coordinate
+     * @returns true if the entity was added
+     */
     bool addLocalEntity(Entity e, int x, int y);
 
+    /**
+     * @brief Remove an entity from the (x,y) cell of the grid.
+     *
+     * @param e the entity
+     * @param x the x coordinate
+     * @param y the y coordinate
+     * @returns true if the entity was added
+     */
     bool removeLocalEntity(Entity e, int x, int y);
 
   protected:

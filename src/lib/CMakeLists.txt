@@ -15,6 +15,12 @@ add_library(es0 SHARED
   ${LIBES_SRC}
 )
 
+set_target_properties(es0
+  PROPERTIES
+  VERSION ${CPACK_PACKAGE_VERSION}
+  SOVERSION ${CPACK_PACKAGE_VERSION_MAJOR}
+)
+
 install(
   TARGETS es0
   LIBRARY DESTINATION lib

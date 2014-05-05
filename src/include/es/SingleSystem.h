@@ -20,9 +20,23 @@
 
 namespace es {
 
+  /**
+   * @brief A single system.
+   *
+   * A single system is a System that handle a single entity.
+   */
   class SingleSystem : public System {
   public:
-
+    /**
+     * @brief Create a single system.
+     *
+     * @param priority the priority of the system (small priority will
+     * be executed first)
+     * @param needed the set of needed component types that an entity must
+     * have to be handled properly by this system
+     * @param manager the manager (that is saved in the system so that the
+     * system can easily access the manager)
+     */
     SingleSystem(int priority, std::set<ComponentType> needed, Manager *manager)
       : System(priority, needed, manager), m_entity(INVALID_ENTITY)
     {
