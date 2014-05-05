@@ -50,7 +50,8 @@ Then you can check the [libes tutorial](https://github.com/jube/libes/blob/maste
 
 ## Contributors
 
-- Sébastien Rombauts, sebastien dot rombauts at gmail dot com
+- [Sébastien Rombauts](https://github.com/SRombauts), sebastien dot rombauts at gmail dot com
+- [Pierre Marijon](https://github.com/natir), pierre at marijon dot fr
 
 ## ChangeLog
 
