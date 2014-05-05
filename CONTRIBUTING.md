@@ -4,6 +4,10 @@
 
 Using the library is the first step to contribution. Do not hesitate to tell me if you are using it with the context.
 
+## Pull request
+
+If you want to make a pull request, always use the [develop branch](https://github.com/jube/libes/tree/develop), not the master branch.
+
 ## Reporting bugs
 
 When you report a bug, try to be as precise as possible, with a code snippet that trigger the bug.
