@@ -19,6 +19,11 @@
 * Add suport for Travis CI
 * Add a document about C++11 status for the project
 
+### 0.5.3 (5 May 2014)
+
+* Improve the Doxygen documentation
+* Add a soname for the library
+
 ## `libes` 0.4
 
 ### 0.4.0 (19 Dec 2013)
