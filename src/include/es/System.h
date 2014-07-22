@@ -120,9 +120,6 @@ namespace es {
     /**
      * @brief Update all the entities in the current time step.
      *
-     * By default, it calls updateEntity on every entity that was already
-     * added.
-     *
      * @param delta the time (in second) since the last update
      */
     virtual void update(float delta);
